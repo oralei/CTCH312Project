@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
+
 public class FPSController : MonoBehaviour
 {
     public Camera playerCamera;
@@ -11,6 +12,10 @@ public class FPSController : MonoBehaviour
     public float jumpPower = 7f;
     public float gravity = 10f;
 
+    public float interactDistance = 1.5f;
+    public LayerMask interactableLayer; // Assign a layer for interactable objects
+    private IInteractable currentInteractable = null; // Store the currently looked-at interactable object
+    private Outline currentOutline = null; // Store the outline component
 
     public float lookSpeed = 2f;
     public float lookXLimit = 45f;
@@ -32,6 +37,12 @@ public class FPSController : MonoBehaviour
 
     void Update()
     {
+        CheckForInteractable();
+
+        if (Input.GetKeyDown(KeyCode.E) && currentInteractable != null)
+        {
+            currentInteractable.Interact();
+        }
 
         #region Handles Movment
         Vector3 forward = transform.TransformDirection(Vector3.forward);
@@ -76,4 +87,49 @@ public class FPSController : MonoBehaviour
 
         #endregion
     }
+
+    void CheckForInteractable()
+    {
+        Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, interactDistance, interactableLayer))
+        {
+            IInteractable interactable = hit.collider.GetComponent<IInteractable>();
+            Outline outline = hit.collider.GetComponent<Outline>();
+
+            if (interactable != null)
+            {
+                if (currentInteractable != interactable) // Only update if new object is detected
+                {
+                    ClearOutline(); // Remove outline from previous object
+                    currentInteractable = interactable;
+                    currentOutline = outline;
+                    if (currentOutline != null)
+                    {
+                        currentOutline.enabled = true; // Enable outline
+                    }
+                }
+                return;
+            }
+        }
+
+        ClearOutline(); // No object detected, clear outline
+    }
+
+    void ClearOutline()
+    {
+        if (currentOutline != null)
+        {
+            currentOutline.enabled = false; // Disable outline
+        }
+        currentInteractable = null;
+        currentOutline = null;
+    }
+}
+
+// Interface for interactable objects
+public interface IInteractable
+{
+    void Interact();
 }

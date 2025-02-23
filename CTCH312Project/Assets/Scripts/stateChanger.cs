@@ -14,13 +14,18 @@ public class stateChanger : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         // Check if the collided object has the "Player" tag
-        if (other.collider.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            if (GameManager.Instance.gameEventState == 0) //
+            if (GameManager.Instance.gameEventState == 0)
+            {
                 GameManager.Instance.gameEventState += 5; // Increase state by 5
+                Debug.Log("Set state to " + GameManager.Instance.gameEventState);
+            }
+            else
+                Debug.Log("Already changed");
         }
     }
 }
