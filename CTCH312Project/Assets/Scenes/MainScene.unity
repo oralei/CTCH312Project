@@ -256,7 +256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 4.46
+  outlineWidth: 10
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -307,7 +307,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 1
   outlineColor: {r: 0, g: 1, b: 0, a: 1}
-  outlineWidth: 6
+  outlineWidth: 10
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -911,7 +911,7 @@ Light:
     m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 0.776
+    m_Strength: 0.821
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -984,7 +984,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Version: 3
-  m_UsePipelineSettings: 1
+  m_UsePipelineSettings: 0
   m_AdditionalLightsShadowResolutionTier: 2
   m_LightLayerMask: 1
   m_RenderingLayers: 1
@@ -1444,8 +1444,8 @@ MonoBehaviour:
   playerCamera: {fileID: 330585545}
   walkSpeed: 3
   runSpeed: 6
-  jumpPower: 5
-  gravity: 10
+  jumpPower: 4.5
+  gravity: 9.81
   interactDistance: 2.57
   interactableLayer:
     serializedVersion: 2
@@ -1708,7 +1708,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 4, y: 5}
+  m_SizeDelta: {x: 4, y: 4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &841352545
 MonoBehaviour:
@@ -3482,7 +3482,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   applePrefab: {fileID: 7900333301521743766, guid: 1d3254d26c0e7a4439849bd9859718bd, type: 3}
-  spawnAmount: 50
+  spawnAmount: 75
 --- !u!4 &1983837797
 Transform:
   m_ObjectHideFlags: 0
