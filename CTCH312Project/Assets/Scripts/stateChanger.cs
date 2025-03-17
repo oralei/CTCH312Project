@@ -21,8 +21,7 @@ public class stateChanger : MonoBehaviour
         {
             if (GameManager.Instance.gameEventState == 0)
             {
-                GameManager.Instance.gameEventState += 5; // Increase state by 5
-                Debug.Log("Set state to " + GameManager.Instance.gameEventState);
+                GameManager.setGameState(GameManager.Instance.gameEventState + 5);
             }
             else
                 Debug.Log("Already changed");

@@ -1,35 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using Yarn.Unity;
 
 [RequireComponent(typeof(CharacterController))]
 
 public class FPSController : MonoBehaviour
 {
     public Camera playerCamera;
+
+    // Yarn Variables
+    public static string playerName = "Godfrey";
+    public static int playerAge = 21;
+
+    // Movement Variables
     public float walkSpeed = 6f;
     public float runSpeed = 12f;
     public float jumpPower = 7f;
     public float gravity = 10f;
 
+    public bool canMove = true;
+
+    // Interaction Variables
     public float interactDistance = 1.5f;
     public LayerMask interactableLayer; // Assign a layer for interactable objects
     private IInteractable currentInteractable = null; // Store the currently looked-at interactable object
     private Outline currentOutline = null; // Store the outline component
+    public TextMeshProUGUI interactText; // enable and disable on hover
 
     public float lookSpeed = 2f;
     public float lookXLimit = 45f;
 
+    public DialogueRunner dialogueRunner;
+
+    //public KeyCode continueActionKeyCode = KeyCode.Space;
 
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
 
-    public bool canMove = true;
-
+    // Items
 
     CharacterController characterController;
     void Start()
     {
+        dialogueRunner.onDialogueComplete.AddListener(OnDialogueEnd);
+
         characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -110,10 +126,33 @@ public class FPSController : MonoBehaviour
                         currentOutline.enabled = true; // Enable outline
                     }
                 }
+
+                interactText.gameObject.SetActive(true); // Show text
+                string objectTag = hit.collider.tag;
+                switch (objectTag)
+                {
+                    case "NPC":
+                        interactText.text = "[E] Talk";
+                        break;
+
+                    case "Food":
+                        interactText.text = "[E] Eat";
+                        break;
+
+                    case "Item":
+                        interactText.text = "[E] Pick Up";
+                        break;
+
+                    default:
+                        interactText.text = "[E] Interact";
+                        break;
+                }
+
                 return;
             }
         }
 
+        interactText.gameObject.SetActive(false); // Hide text when not hovering
         ClearOutline(); // No object detected, clear outline
     }
 
@@ -125,6 +164,16 @@ public class FPSController : MonoBehaviour
         }
         currentInteractable = null;
         currentOutline = null;
+    }
+
+    public void OnDialogueEnd()
+    {
+        Debug.Log("Dialogue has finished!");
+
+        // Re-enable player movement
+        canMove = true;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }
 

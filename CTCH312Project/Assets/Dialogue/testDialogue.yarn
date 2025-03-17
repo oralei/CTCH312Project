@@ -1,0 +1,89 @@
+﻿title: Start
+position: 3,2
+---
+<<declare $gameState = 0>> // Global game state
+<<GetState YarnFunctions>>
+
+<<declare $playerName = "NULL">>
+<<GetName YarnFunctions>>
+
+<<declare $playerAge = 0>>
+<<GetAge YarnFunctions>>
+
+Billy's Mom: Why hello there, {$playerName}! 
+Billy's Mom: Thank you for coming out tonight.
+Billy's Mom: It's been too long since Kevin and I had a little... time for ourselves.
+Billy's Mom: I hope our little Billy here doesn't cause you too much trouble haha!
+Billy's Mom: If you need anything just text us, you have my number.
+
+Kevin: Oh, before I forget.
+Kevin: Don't go into the basement.
+Kevin: It's being renovated and I don't want you getting hurt.
+
+Billy's Mom: Anyways, see you in a few hours {$playerName}!
+    -> Don't you worry Mrs. Billy's Mom, we'll be fine!
+    -> Mhm, see you later. 
+
+<<setState 5>>
+<<parentsLeave YarnFunctions>>
+===
+
+title: MeetBilly
+position: 288,2
+---
+<<GetName YarnFunctions>>
+<<GetAge YarnFunctions>>
+
+<<declare $watchingTV = false>>
+
+<<if $watchingTV == false>>
+
+Billy: I've never seen you before.
+Billy: You look old.
+    -> I'm not that old, I'm only {$playerAge}.
+    -> You look like a twerp.
+        Billy: *sticks his tongue out*
+    Billy: What's your name anyways?
+        -> {$playerName}
+        -> Joe
+            Billy: Joe?
+            Billy: That's a boring name!
+            -> Joe mama!
+                Billy: *sticks his tongue out*
+    Billy: I don't care.
+    Billy: I'm gonna watch TV now.
+    -> Okay have fun!
+    -> Lazy bum.
+        Billy: Did you say something?
+        -> Nope.
+    <<set $watchingTV = true>>
+    <<setState 10>>
+    <<stop>>
+    
+<<else>>
+    Billy: I love this show!
+<<endif>>
+===
+
+title: feedBillyNode
+position: 544,1
+---
+<<GetState YarnFunctions>>
+
+<<if $gameState == 15>>
+    Billy: I'm hungry!
+    Billy: Make me food!
+<<else>>
+    Billy: Mmmm... pizza... hehe...
+<<endif>>
+
+<<stop>>
+===
+
+title: InteractObject
+position: 18,227
+---
+<<declare $interactMsg = "This is an object">>
+{$interactMsg}
+<<stop>>
+===
