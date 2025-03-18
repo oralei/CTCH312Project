@@ -1,10 +1,13 @@
 using UnityEngine;
+using Yarn;
+using Yarn.Unity;
 
 public class microwaveBehaviour : MonoBehaviour
 {
     private Animator mwAnimator;
     private bool isOpen;
 
+    static public bool hasPizza;
     private bool isPizzaInside;
     private bool isHeating;
     private bool isDoneHeating;
@@ -15,6 +18,9 @@ public class microwaveBehaviour : MonoBehaviour
     public Material onMat;
 
     public GameObject objectBody;
+
+    public DialogueRunner dialogueRunner;
+    public YarnFunctions YarnFunctions;
 
     void Start()
     {
@@ -62,8 +68,16 @@ public class microwaveBehaviour : MonoBehaviour
                     else
                     {
                         // Place pizza inside microwave
-                        pizzaObject.gameObject.SetActive(true);
-                        isPizzaInside = true;
+                        if(hasPizza == true)
+                        {
+                            pizzaObject.gameObject.SetActive(true);
+                            isPizzaInside = true;
+                        }
+                        else
+                        {
+                            TriggerOneLineDialogue("I need the pizza first");
+                        }
+
                     }
                 }
                 else
@@ -94,5 +108,12 @@ public class microwaveBehaviour : MonoBehaviour
     {
         mwAnimator.SetTrigger("closeTrig");
         isOpen = false;
+    }
+
+    private void TriggerOneLineDialogue(string line)
+    {
+        // Run the dialogue
+        YarnFunctions.storage.SetValue("$interactMsg", line);
+        dialogueRunner.StartDialogue("InteractObject");
     }
 }

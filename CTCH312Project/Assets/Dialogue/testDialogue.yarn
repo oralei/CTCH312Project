@@ -73,7 +73,7 @@ position: 544,1
 <<if $gameState == 15>>
     Billy: I'm hungry!
     Billy: Make me food!
-<<else>>
+<<elseif $gameState == 20>>
     Billy: Mmmm... pizza... hehe...
 <<endif>>
 
