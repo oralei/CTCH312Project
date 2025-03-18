@@ -12,7 +12,6 @@ public class interactableObject : MonoBehaviour, IInteractable
     public DialogueRunner dialogueRunner;
     public YarnFunctions YarnFunctions;
     public string objectID; // Unique identifier for different interactable objects
-    public List<string> objectsFound = new List<string>();
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -79,10 +78,10 @@ public class interactableObject : MonoBehaviour, IInteractable
                 break;
 
             case "Appa":
-                Debug.Log("Object in array: " + objectsFound.Count);
-                exploreCountObject("Appa", objectsFound);
-                Debug.Log("Object in array after: " + objectsFound.Count);
-                Destroy(gameObject);
+                exploreCountObject("Appa");
+                Debug.Log("Object in array after: " + GameManager.Instance.objectsFound.Count);
+
+                gameObject.SetActive(false);
                 break;
 
             case "pizza":
@@ -104,15 +103,18 @@ public class interactableObject : MonoBehaviour, IInteractable
                 break;
 
             case "object1":
-                Debug.Log("Object in array: " + objectsFound.Count);
-                exploreCountObject("object1", objectsFound);
-                Debug.Log("Object in array after: " + objectsFound.Count);
+                exploreCountObject("object1");
+                Debug.Log("Object in array after: " + GameManager.Instance.objectsFound.Count);
                 break;
 
             case "object2":
-                Debug.Log("Object in array: " + objectsFound.Count);
-                exploreCountObject("object2", objectsFound);
-                Debug.Log("Object in array after: " + objectsFound.Count);
+                exploreCountObject("object2");
+                Debug.Log("Object in array after: " + GameManager.Instance.objectsFound.Count);
+                break;
+
+            case "object3":
+                exploreCountObject("object3");
+                Debug.Log("Object in array after: " + GameManager.Instance.objectsFound.Count);
                 break;
 
             default:
@@ -131,23 +133,34 @@ public class interactableObject : MonoBehaviour, IInteractable
 
     private void TriggerOneLineDialogue(string line)
     {
-        // Run the dialogue
-        YarnFunctions.storage.SetValue("$interactMsg", line);
-        dialogueRunner.StartDialogue("InteractObject");
+        if (!dialogueRunner.IsDialogueRunning)
+        {
+            // Run the dialogue
+            YarnFunctions.storage.SetValue("$interactMsg", line);
+            dialogueRunner.StartDialogue("InteractObject");
+        }
     }
 
-    private void exploreCountObject(string objectID, List<string> objectsFound)
+    private void exploreCountObject(string objectID)
     {
-        if (!objectsFound.Contains(objectID)) // Check if objectID is unique
+        if (GameManager.Instance.gameEventState >= 10)
         {
-            objectsFound.Add(objectID); // Add only if it's unique
-        }
+            if (!GameManager.Instance.objectsFound.Contains(objectID))
+            {
+                GameManager.Instance.objectsFound.Add(objectID);
+                Debug.Log("Added new object.");
+            }
+            else
+            {
+                Debug.Log("Not a new object.");
+            }
 
-        if (objectsFound.Count == 3)
-        {
-            GameManager.setGameState(15);
-            OnDialogueStart();
-            dialogueRunner.StartDialogue("feedBillyNode");
+            if (GameManager.Instance.objectsFound.Count == 3)
+            {
+                GameManager.setGameState(15);
+                OnDialogueStart();
+                dialogueRunner.StartDialogue("feedBillyNode");
+            }
         }
     }
 }

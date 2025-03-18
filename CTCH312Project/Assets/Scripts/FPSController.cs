@@ -60,6 +60,11 @@ public class FPSController : MonoBehaviour
             currentInteractable.Interact();
         }
 
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            Debug.Log(GameManager.Instance.gameEventState);
+        }
+
         #region Handles Movment
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);

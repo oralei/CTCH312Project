@@ -1,9 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public int gameEventState = 0;
+
+    public HashSet<string> objectsFound = new HashSet<string>(); // HashSet prevents duplicates automatically
 
     private void Awake()
     {
