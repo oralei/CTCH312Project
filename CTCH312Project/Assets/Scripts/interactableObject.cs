@@ -102,6 +102,28 @@ public class interactableObject : MonoBehaviour, IInteractable
                 TriggerOneLineDialogue("This vase looks wobbly...");
                 break;
 
+            case "chicken":
+                exploreCountObject("chicken");
+                OnDialogueStart();
+                TriggerOneLineDialogue("I guess the chicken crossed the road...");
+                break;
+
+            case "coke":
+                exploreCountObject("coke");
+                OnDialogueStart();
+                TriggerOneLineDialogue("I prefer Pepsi...");
+                break;
+
+            case "pie":
+                exploreCountObject("pie");
+                OnDialogueStart();
+                TriggerOneLineDialogue("I wonder if it's a bomb...");
+                break;
+
+            case "remote":
+                Debug.Log("remote");
+                break;
+
             case "object1":
                 exploreCountObject("object1");
                 Debug.Log("Object in array after: " + GameManager.Instance.objectsFound.Count);
