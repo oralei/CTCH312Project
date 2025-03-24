@@ -77,6 +77,11 @@ public class interactableObject : MonoBehaviour, IInteractable
                 }
                 break;
 
+            case "door":
+                DoorController doorController = GetComponent<DoorController>();
+                doorController.isOpening = !doorController.isOpening;
+                break;
+            
             case "Appa":
                 exploreCountObject("Appa");
                 Debug.Log("Object in array after: " + GameManager.Instance.objectsFound.Count);
