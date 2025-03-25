@@ -77,6 +77,7 @@ public class interactableObject : MonoBehaviour, IInteractable
                 }
                 break;
 
+            // Door interaction:
             case "door":
                 DoorController doorController = GetComponent<DoorController>();
                 doorController.isOpening = !doorController.isOpening;
@@ -84,7 +85,7 @@ public class interactableObject : MonoBehaviour, IInteractable
             
             case "Appa":
                 exploreCountObject("Appa");
-                Debug.Log("Object in array after: " + GameManager.Instance.objectsFound.Count);
+                //Debug.Log("Object in array after: " + GameManager.Instance.objectsFound.Count);
 
                 gameObject.SetActive(false);
                 break;
@@ -98,11 +99,42 @@ public class interactableObject : MonoBehaviour, IInteractable
                 Debug.Log("This is a pizza slice!");
                 break;
 
+            case "coffee":
+                exploreCountObject("coffee");
+                OnDialogueStart();
+                TriggerOneLineDialogue("I could use a cup of coffee right now...");
+                break;
+
+            case "soap":
+                exploreCountObject("soap");
+                OnDialogueStart();
+                TriggerOneLineDialogue("Don't drop it!");
+                break;
+
+            case "bookcase":
+                exploreCountObject("bookcase");
+                OnDialogueStart();
+                TriggerOneLineDialogue("Was never much of a reader...");
+                break;
+
+            case "tv":
+                exploreCountObject("tv");
+                OnDialogueStart();
+                TriggerOneLineDialogue("Kids really watch this stuff?");
+                break;
+
+            case "magazines":
+                exploreCountObject("magazines");
+                OnDialogueStart();
+                TriggerOneLineDialogue("Who left these here?");
+                break;
+
             case "microwave":
                 gameObject.GetComponent<microwaveBehaviour>().openMicrowave();
                 break;
 
             case "vase":
+                exploreCountObject("vase");
                 OnDialogueStart();
                 TriggerOneLineDialogue("This vase looks wobbly...");
                 break;
@@ -122,7 +154,13 @@ public class interactableObject : MonoBehaviour, IInteractable
             case "pie":
                 exploreCountObject("pie");
                 OnDialogueStart();
-                TriggerOneLineDialogue("I wonder if it's a bomb...");
+                TriggerOneLineDialogue("I can feel myself floating from the smell...");
+                break;
+
+            case "hotdog":
+                exploreCountObject("hotdog");
+                OnDialogueStart();
+                TriggerOneLineDialogue("A glizzy.");
                 break;
 
             case "remote":

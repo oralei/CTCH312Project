@@ -62,6 +62,7 @@ public class microwaveBehaviour : MonoBehaviour
                         {
                             isPizzaInside = false;
                             pizzaObject.gameObject.SetActive(false);
+                            GameManager.Instance.UpdateTaskText("Serve food to Billy");
                             GameManager.setGameState(20);
                         }
                     }

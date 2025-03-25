@@ -17,6 +17,11 @@ public class YarnFunctions : MonoBehaviour
         GameManager.setGameState(newNumber);
     }
 
+    [YarnCommand("setTaskText")] public static void SetTaskText(string taskText) 
+    { 
+        GameManager.Instance.UpdateTaskText(taskText);
+    }
+
     [YarnCommand] public void GetName()
     {
         storage.SetValue("$playerName", FPSController.playerName);

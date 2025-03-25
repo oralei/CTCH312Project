@@ -25,6 +25,7 @@ Billy's Mom: Anyways, see you in a few hours {$playerName}!
     -> Mhm, see you later. 
 
 <<setState 5>>
+<<setTaskText "Meet Billy">>
 <<parentsLeave YarnFunctions>>
 ===
 
@@ -58,6 +59,7 @@ Billy: You look old.
         -> Nope.
     <<set $watchingTV = true>>
     <<setState 10>>
+    <<setTaskText "Explore the house">>
     <<stop>>
     
 <<else>>
@@ -73,8 +75,10 @@ position: 544,1
 <<if $gameState == 15>>
     Billy: I'm hungry!
     Billy: Make me food!
+    <<setTaskText "Make food for Billy">>
 <<elseif $gameState == 20>>
     Billy: Mmmm... pizza... hehe...
+    <<setTaskText "Idk">>
 <<endif>>
 
 <<stop>>
