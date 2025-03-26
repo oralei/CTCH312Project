@@ -34,6 +34,8 @@ public class FPSController : MonoBehaviour
 
     public DialogueRunner dialogueRunner;
 
+    public BillyMovement BillyMovement;
+
     //public KeyCode continueActionKeyCode = KeyCode.Space;
 
     Vector3 moveDirection = Vector3.zero;
@@ -179,6 +181,12 @@ public class FPSController : MonoBehaviour
         canMove = true;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        if (dialogueRunner.VariableStorage.TryGetValue<bool>("$watchingTV", out var result))
+        {
+            if(result)
+                BillyMovement.MoveToDestination(new Vector3(0.171000004f, 0.134000003f, -8.16499996f));
+        }
     }
 }
 

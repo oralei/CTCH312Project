@@ -65,6 +65,14 @@ public class interactableObject : MonoBehaviour, IInteractable
                                 dialogueRunner.StartDialogue("feedBillyNode");
                                 break;
 
+                            case 25:
+                                dialogueRunner.StartDialogue("washroomNode");
+                                break;
+
+                            case 30:
+                                dialogueRunner.StartDialogue("brokenVaseNode");
+                                break;
+
                             default:
                                 Debug.Log("DANGER: No case for state " + GameManager.Instance.gameEventState);
                                 GameObject.FindWithTag("Player").GetComponent<FPSController>().OnDialogueEnd();

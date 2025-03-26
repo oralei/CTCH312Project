@@ -74,11 +74,37 @@ position: 544,1
 
 <<if $gameState == 15>>
     Billy: I'm hungry!
-    Billy: Make me food!
+    Billy: I want pizza!
     <<setTaskText "Make food for Billy">>
 <<elseif $gameState == 20>>
     Billy: Mmmm... pizza... hehe...
-    <<setTaskText "Idk">>
+    <<setState 25>>
+    <<setTaskText "Go to the washroom">>
+
+<<endif>>
+
+<<stop>>
+===
+
+title: washroomNode
+position: 792,4
+---
+<<GetState YarnFunctions>>
+
+<<if $gameState == 25>>
+    I need to wash my hands...
+<<endif>>
+
+<<stop>>
+===
+
+title: brokenVaseNode
+position: 792,4
+---
+<<GetState YarnFunctions>>
+
+<<if $gameState == 30>>
+    Billy: Oh no!
 <<endif>>
 
 <<stop>>
