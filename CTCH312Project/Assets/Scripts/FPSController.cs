@@ -116,46 +116,50 @@ public class FPSController : MonoBehaviour
         Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, interactDistance, interactableLayer))
+        if (Physics.Raycast(ray, out hit, interactDistance))
         {
-            IInteractable interactable = hit.collider.GetComponent<IInteractable>();
-            Outline outline = hit.collider.GetComponent<Outline>();
-
-            if (interactable != null)
+            // If the hit object is on the interactable layer
+            if (((1 << hit.collider.gameObject.layer) & interactableLayer) != 0)
             {
-                if (currentInteractable != interactable) // Only update if new object is detected
+                IInteractable interactable = hit.collider.GetComponent<IInteractable>();
+                Outline outline = hit.collider.GetComponent<Outline>();
+
+                if (interactable != null)
                 {
-                    ClearOutline(); // Remove outline from previous object
-                    currentInteractable = interactable;
-                    currentOutline = outline;
-                    if (currentOutline != null)
+                    if (currentInteractable != interactable) // Only update if new object is detected
                     {
-                        currentOutline.enabled = true; // Enable outline
+                        ClearOutline(); // Remove outline from previous object
+                        currentInteractable = interactable;
+                        currentOutline = outline;
+                        if (currentOutline != null)
+                        {
+                            currentOutline.enabled = true; // Enable outline
+                        }
                     }
+
+                    interactText.gameObject.SetActive(true); // Show text
+                    string objectTag = hit.collider.tag;
+                    switch (objectTag)
+                    {
+                        case "NPC":
+                            interactText.text = "[E] Talk";
+                            break;
+
+                        case "Food":
+                            interactText.text = "[E] Eat";
+                            break;
+
+                        case "Item":
+                            interactText.text = "[E] Pick Up";
+                            break;
+
+                        default:
+                            interactText.text = "[E] Interact";
+                            break;
+                    }
+
+                    return;
                 }
-
-                interactText.gameObject.SetActive(true); // Show text
-                string objectTag = hit.collider.tag;
-                switch (objectTag)
-                {
-                    case "NPC":
-                        interactText.text = "[E] Talk";
-                        break;
-
-                    case "Food":
-                        interactText.text = "[E] Eat";
-                        break;
-
-                    case "Item":
-                        interactText.text = "[E] Pick Up";
-                        break;
-
-                    default:
-                        interactText.text = "[E] Interact";
-                        break;
-                }
-
-                return;
             }
         }
 
@@ -182,10 +186,17 @@ public class FPSController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        if (dialogueRunner.VariableStorage.TryGetValue<bool>("$watchingTV", out var result))
+        if (dialogueRunner.VariableStorage.TryGetValue<bool>("$watchingTV", out var result) && GameManager.Instance.gameEventState <= 25)
         {
-            if(result)
-                BillyMovement.MoveToDestination(new Vector3(0.171000004f, 0.134000003f, -8.16499996f));
+            if (result)
+            {
+                BillyMovement.MoveToDestination(new Vector3(0.171000004f, 0.134000003f, -7.98799992f), new Quaternion(0, 1, 0, 0));
+            }
+        }
+
+        if (GameManager.Instance.gameEventState == 40)
+        {
+            GameManager.Instance.UpdateTaskText("Clean up the broken vase");
         }
     }
 }
@@ -195,3 +206,5 @@ public interface IInteractable
 {
     void Interact();
 }
+
+//Vector3(0.171000004, 0.134000003, -8.16499996)

@@ -1,14 +1,19 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
+using System;
 using TMPro;
+using System.Collections.Generic;
 
 public class BillyMovement : MonoBehaviour
 {
     private NavMeshAgent m_Agent;
     public GameObject player;
-    private Coroutine currentMovement;
-    private bool isMoving = false;
+
+    private Queue<Vector3> destinationQueue = new Queue<Vector3>();
+    private bool isProcessingQueue = false;
+    private Coroutine queueProcessCoroutine;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -23,27 +28,41 @@ public class BillyMovement : MonoBehaviour
 
     }
 
-    public IEnumerator MoveToDestination(Vector3 targetPosition)
+    // Public function to add a destination to the queue
+    public void MoveToDestination(Vector3 destination, Quaternion lookRotation)
     {
-        if (m_Agent == null)
+        destinationQueue.Enqueue(destination);
+
+        // Start processing the queue if not already doing so
+        if (!isProcessingQueue)
         {
-            Debug.LogError("No NavMeshAgent component found!");
-            yield break;
+            queueProcessCoroutine = StartCoroutine(ProcessDestinationQueue(lookRotation));
+            transform.rotation = lookRotation;
+        }
+    }
+
+    // Coroutine to process the queue of destinations
+    private IEnumerator ProcessDestinationQueue(Quaternion lookRotation)
+    {
+        isProcessingQueue = true;
+
+        while (destinationQueue.Count > 0)
+        {
+            Vector3 nextDestination = destinationQueue.Dequeue();
+            m_Agent.SetDestination(nextDestination);
+
+            // Wait until the m_Agent has reached the destination
+            while (m_Agent.pathPending || m_Agent.remainingDistance > m_Agent.stoppingDistance)
+            {
+                yield return null;
+            }
+
+            transform.rotation = lookRotation;
+            // Small delay between destinations
+            yield return new WaitForSeconds(0.5f);
         }
 
-        isMoving = true;
-        m_Agent.SetDestination(targetPosition);
-
-        // Wait until we're close enough to the destination
-        while (isMoving && Vector3.Distance(transform.position, targetPosition) > 0.5f)
-        {
-            yield return null;
-        }
-
-        isMoving = false;
-
-        // Return true through the completed coroutine
-        yield return true;
+        isProcessingQueue = false;
     }
 
 }

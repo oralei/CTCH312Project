@@ -1,5 +1,5 @@
 ﻿title: Start
-position: 3,2
+position: 17,7
 ---
 <<declare $gameState = 0>> // Global game state
 <<GetState YarnFunctions>>
@@ -30,7 +30,7 @@ Billy's Mom: Anyways, see you in a few hours {$playerName}!
 ===
 
 title: MeetBilly
-position: 288,2
+position: 262,7
 ---
 <<GetName YarnFunctions>>
 <<GetAge YarnFunctions>>
@@ -68,7 +68,7 @@ Billy: You look old.
 ===
 
 title: feedBillyNode
-position: 544,1
+position: 511,6
 ---
 <<GetState YarnFunctions>>
 
@@ -87,7 +87,7 @@ position: 544,1
 ===
 
 title: washroomNode
-position: 792,4
+position: 754,6
 ---
 <<GetState YarnFunctions>>
 
@@ -99,12 +99,58 @@ position: 792,4
 ===
 
 title: brokenVaseNode
-position: 792,4
+position: 991,4
 ---
 <<GetState YarnFunctions>>
 
 <<if $gameState == 30>>
     Billy: Oh no!
+<<elseif $gameState == 35>>
+    Billy: Oh no!
+    -> Are you okay?
+        Billy: Yeah... but...
+    -> What did you do!?
+    Billy: It wasn't me.
+    Billy: It just fell over on it's own!
+    -> How did that happen?
+    -> You're lying.
+        Billy: I'm not!
+    Billy: I was watching TV and it just fell...
+    -> Okay well, I'm gonna clean this up.
+    <<setState 40>>
+    
+<<endif>>
+
+<<stop>>
+===
+
+title: letsPlayNode
+position: 1225,2
+---
+<<GetState YarnFunctions>>
+
+<<if $gameState == 45>>
+    Billy: I'm kinda bored of the TV...
+    Billy: Can we play a game?
+    -> Uh...
+        -> Sure?
+    -> No.
+        Billy: Please...
+        -> No.
+            Billy: Pretty please...
+            -> No.
+                Billy: Pretty please...
+                Billy: With a cherry on top?
+                -> Fine.
+    Billy: Yay!
+    Billy: Let's play...
+    Billy: Hide-and-seek!
+    Billy: You count to ten, and I'll hide!
+    Billy: Then you have to find me!
+    -> Okay sounds good.
+        -> Your mom told me not to go to the basement, okay?
+        Billy: Okay!
+        Billy: Now go to the corner and count!
 <<endif>>
 
 <<stop>>
