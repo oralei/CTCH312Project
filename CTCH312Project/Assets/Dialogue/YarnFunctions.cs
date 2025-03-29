@@ -36,4 +36,10 @@ public class YarnFunctions : MonoBehaviour
     {
         Destroy(GameObject.Find("NPC_Mom"));
     }
+
+    [YarnCommand] public void GetHasPizza()
+    {
+        Debug.Log(microwaveBehaviour.hasPizza);
+        storage.SetValue("$hasPizza", microwaveBehaviour.hasPizza);
+    }
 }

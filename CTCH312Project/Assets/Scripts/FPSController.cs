@@ -153,6 +153,10 @@ public class FPSController : MonoBehaviour
                             interactText.text = "[E] Pick Up";
                             break;
 
+                        case "Dirty":
+                            interactText.text = "[E] Clean Up";
+                            break;
+
                         default:
                             interactText.text = "[E] Interact";
                             break;

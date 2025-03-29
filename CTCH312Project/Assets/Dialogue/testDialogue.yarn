@@ -70,14 +70,25 @@ Billy: You look old.
 title: feedBillyNode
 position: 511,6
 ---
+<<declare $hasPizza = false>>
+<<GetHasPizza YarnFunctions>>
+
 <<GetState YarnFunctions>>
 
 <<if $gameState == 15>>
-    Billy: I'm hungry!
-    Billy: I want pizza!
     <<setTaskText "Make food for Billy">>
+    <<if $hasPizza>>
+        Billy: That pizza is cold.
+        Billy: I want it hot!
+    <<else>>
+        Billy: I'm hungry!
+        Billy: I want pizza!
+    <<endif>>
 <<elseif $gameState == 20>>
     Billy: Mmmm... pizza... hehe...
+    ...
+    That pizza was pretty greasy.
+    I should probably wash my hands...
     <<setState 25>>
     <<setTaskText "Go to the washroom">>
 
@@ -90,9 +101,9 @@ title: washroomNode
 position: 754,6
 ---
 <<GetState YarnFunctions>>
-
+    I should probably wash my hands first...
 <<if $gameState == 25>>
-    I need to wash my hands...
+
 <<endif>>
 
 <<stop>>
@@ -106,7 +117,7 @@ position: 991,4
 <<if $gameState == 30>>
     Billy: Oh no!
 <<elseif $gameState == 35>>
-    Billy: Oh no!
+    Billy: ...
     -> Are you okay?
         Billy: Yeah... but...
     -> What did you do!?
@@ -118,7 +129,7 @@ position: 991,4
     Billy: I was watching TV and it just fell...
     -> Okay well, I'm gonna clean this up.
     <<setState 40>>
-    
+    <<setTaskText "Clean up the broken vase">>
 <<endif>>
 
 <<stop>>
@@ -150,7 +161,11 @@ position: 1225,2
     -> Okay sounds good.
         -> Your mom told me not to go to the basement, okay?
         Billy: Okay!
-        Billy: Now go to the corner and count!
+        Billy: Now go to the corner there and count!
+    <<setState 50>>
+    <<setTaskText "Go to the corner">>
+<<elseif $gameState == 50>>
+    Billy: Go to the corner already!
 <<endif>>
 
 <<stop>>

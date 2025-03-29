@@ -61,6 +61,7 @@ public class interactableObject : MonoBehaviour, IInteractable
                                 dialogueRunner.StartDialogue("feedBillyNode");
                                 break;
 
+                            // Pizza is heated and ready to give to Billy:
                             case 20:
                                 dialogueRunner.StartDialogue("feedBillyNode");
                                 break;
@@ -83,6 +84,10 @@ public class interactableObject : MonoBehaviour, IInteractable
                                 break;
 
                             case 45:
+                                dialogueRunner.StartDialogue("letsPlayNode");
+                                break;
+
+                            case 50:
                                 dialogueRunner.StartDialogue("letsPlayNode");
                                 break;
 
@@ -135,6 +140,7 @@ public class interactableObject : MonoBehaviour, IInteractable
                     // Clean vase:
                     Destroy(GameObject.Find("brokenVase"));
                     GameManager.setGameState(45);
+                    GameManager.Instance.UpdateTaskText("Talk to Billy");
                 }
                 break;
 

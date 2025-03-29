@@ -8,6 +8,8 @@ TagManager:
   - Object
   - Food
   - Door
+  - Item
+  - Dirty
   layers:
   - Default
   - TransparentFX
@@ -17,7 +19,7 @@ TagManager:
   - UI
   - interactableLayer
   - playerLayer
-  - 
+  - pointerUI
   - 
   - 
   - 
