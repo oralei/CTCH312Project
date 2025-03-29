@@ -87,8 +87,8 @@ position: 511,6
 <<elseif $gameState == 20>>
     Billy: Mmmm... pizza... hehe...
     ...
-    That pizza was pretty greasy.
-    I should probably wash my hands...
+    <color=\#68829c><i>That pizza was pretty greasy.</i></color>
+    <color=\#68829c><i>I should probably wash my hands...</i></color>
     <<setState 25>>
     <<setTaskText "Go to the washroom">>
 
@@ -101,7 +101,7 @@ title: washroomNode
 position: 754,6
 ---
 <<GetState YarnFunctions>>
-    I should probably wash my hands first...
+    <color=\#68829c><i>I should probably wash my hands first...</i></color>
 <<if $gameState == 25>>
 
 <<endif>>
@@ -171,10 +171,74 @@ position: 1225,2
 <<stop>>
 ===
 
+title: hideAndSeekNode
+position: 1462,2
+---
+<<GetState YarnFunctions>>
+<<declare $theThing = false>>
+
+<<if $theThing == false>>
+    Billy: Remember...
+    Billy: No peeking!
+    <<set $theThing = true>>
+<<endif>>
+
+<<if $gameState >= 55>>
+    10...
+    9...
+    Uh...
+    5, 4, 3, 2, 1!
+    Ready or not here I come!
+<<endif>>
+
+<<stop>>
+===
+
+title: findBillyNode
+position: 1697,1
+---
+<<GetState YarnFunctions>>
+
+<<if $gameState == 55>>
+    Billy: Aww, you found me!
+    Billy: Let's go again.
+    Billy: Go back to the corner and count to 10.
+    <<setState 56>>
+<<elseif $gameState == 56>>
+    Billy: Go back to the corner already!
+<<elseif $gameState == 60>>
+    Billy: You're too good!
+    Billy: Again, again!
+    <<setState 61>>
+<<elseif $gameState == 61>>
+    Billy: Go back to the corner already!
+<<elseif $gameState == 65>>
+    Billy: ...
+    Billy: Can we play one more?
+    -> Fine, we can do one more.
+    <<setState 66>>
+<<elseif $gameState == 66>>
+    Billy: Go back to the corner already!
+<<endif>>
+
+<<stop>>
+===
+
+title: topStairsNode
+position: 1940,-1
+---
+<<GetState YarnFunctions>>
+
+Billy: ...
+Billy: Down...
+Billy: There...
+<<stop>>
+===
+
 title: InteractObject
 position: 18,227
 ---
 <<declare $interactMsg = "This is an object">>
-{$interactMsg}
+<color=\#68829c><i>{$interactMsg}</i></color>
 <<stop>>
 ===

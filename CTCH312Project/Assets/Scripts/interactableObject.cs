@@ -91,6 +91,34 @@ public class interactableObject : MonoBehaviour, IInteractable
                                 dialogueRunner.StartDialogue("letsPlayNode");
                                 break;
 
+                            case 55:
+                                dialogueRunner.StartDialogue("findBillyNode");
+                                break;
+
+                            case 56:
+                                dialogueRunner.StartDialogue("findBillyNode");
+                                break;
+
+                            case 60:
+                                dialogueRunner.StartDialogue("findBillyNode");
+                                break;
+
+                            case 61:
+                                dialogueRunner.StartDialogue("findBillyNode");
+                                break;
+
+                            case 65:
+                                dialogueRunner.StartDialogue("findBillyNode");
+                                break;
+
+                            case 66:
+                                dialogueRunner.StartDialogue("findBillyNode");
+                                break;
+
+                            case 70:
+                                dialogueRunner.StartDialogue("topStairsNode");
+                                break;
+
                             default:
                                 Debug.Log("DANGER: No case for state " + GameManager.Instance.gameEventState);
                                 GameObject.FindWithTag("Player").GetComponent<FPSController>().OnDialogueEnd();

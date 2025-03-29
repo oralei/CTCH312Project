@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 public class BillyMovement : MonoBehaviour
 {
-    private NavMeshAgent m_Agent;
+    public NavMeshAgent m_Agent;
     public GameObject player;
 
     private Queue<Vector3> destinationQueue = new Queue<Vector3>();
@@ -17,7 +17,7 @@ public class BillyMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        m_Agent = GetComponent <NavMeshAgent>();
+        //m_Agent = GetComponent <NavMeshAgent>();
         //MoveToPositionThenRotate(new Vector3(0.171000004f, 0.134000003f, -8.16499996f), new Quaternion(0, 1, 0, 0));
     }
 
