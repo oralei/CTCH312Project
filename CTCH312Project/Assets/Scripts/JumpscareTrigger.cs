@@ -19,22 +19,21 @@ public class Jumpscare : MonoBehaviour
     [Range(0f, 1f)]
     public float visibilityThreshold = 0.3f;
 
-    private AudioSource audioSource;
+    AudioManager audioManager;
+
     private Renderer objectRenderer;
     private bool hasDisappeared = false;
     private float lastCheckTime;
 
     void Start()
     {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         // Get the renderer component
         objectRenderer = GetComponent<Renderer>();
 
         // Ensure the object is visible at start
         if (objectRenderer != null)
             objectRenderer.enabled = true;
-
-        // Get or add an audio source
-        audioSource = GetComponent<AudioSource>();
 
         lastCheckTime = 0;
     }
@@ -124,10 +123,9 @@ public class Jumpscare : MonoBehaviour
         hasDisappeared = true;
 
         // Play sound if available
-        if (audioSource != null && jumpscareSound != null)
+        if (jumpscareSound != null)
         {
-            audioSource.clip = jumpscareSound;
-            audioSource.Play();
+            audioManager.PlaySFX(jumpscareSound);
         }
 
         // Hide the object after the specified duration
@@ -140,6 +138,14 @@ public class Jumpscare : MonoBehaviour
 
         // Hide the object
         if (objectRenderer != null)
+        { 
             objectRenderer.enabled = false;
+            Renderer[] renderers = GetComponentsInChildren<Renderer>();
+
+            foreach (Renderer rend in renderers)
+            {
+                rend.enabled = false; // Disable the Renderer (Makes object invisible)
+            }
+        }
     }
 }

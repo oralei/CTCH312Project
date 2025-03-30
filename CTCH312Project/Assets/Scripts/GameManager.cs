@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public GameObject Lights2;
     public GameObject StairLight;
 
+    public GhostJumpScare ghostJumpScare;
 
     public TextMeshProUGUI taskText; // Reference to your TMP text component
 
@@ -43,8 +44,13 @@ public class GameManager : MonoBehaviour
         {
             Instance.HS_Handler.SetActive(true);
         }
-        else if (Instance.gameEventState == 55)
+        else if (Instance.gameEventState == 55)  // -------- Seeking
         {
+            GhostJumpScare.Instance.setupJS();
+            GhostJumpScare.Instance.ready = true;
+
+            PhoneJS.Instance.ready = true;
+
             Instance.HS_Handler.SetActive(false);
         }
         // Round 2
@@ -53,7 +59,7 @@ public class GameManager : MonoBehaviour
             Instance.HS_Handler.SetActive(true);
             Instance.UpdateTaskText("Go to the corner and count");
         }
-        else if (Instance.gameEventState == 60)
+        else if (Instance.gameEventState == 60)   // -------- Seeking
         {
             Instance.HS_Handler.SetActive(false);
         }
@@ -63,7 +69,7 @@ public class GameManager : MonoBehaviour
             Instance.HS_Handler.SetActive(true);
             Instance.UpdateTaskText("Go to the corner and count");
         }
-        else if (Instance.gameEventState == 65)
+        else if (Instance.gameEventState == 65)   // -------- Seeking
         {
             Instance.HS_Handler.SetActive(false);
         }
@@ -73,8 +79,7 @@ public class GameManager : MonoBehaviour
             Instance.HS_Handler.SetActive(true);
             Instance.UpdateTaskText("Go to the corner and count");
         }
-        // Seeking last
-        else if (Instance.gameEventState == 70)
+        else if (Instance.gameEventState == 70)   // -------- Seeking last
         {
             // Disable these
             Instance.HS_Handler.SetActive(false);

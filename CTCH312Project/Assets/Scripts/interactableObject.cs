@@ -146,7 +146,20 @@ public class interactableObject : MonoBehaviour, IInteractable
                 doorController.isOpening = !doorController.isOpening;
                 audioSource.PlayOneShot(audioManager.door);
                 break;
-            
+
+            case "ghostDoor":
+                DoorController doorController2 = GetComponent<DoorController>();
+                doorController2.isOpening = !doorController2.isOpening;
+                audioSource.PlayOneShot(audioManager.door);
+
+                if (GhostJumpScare.Instance.ready)
+                {
+                    GhostJumpScare.Instance.triggerGhostJS();
+                    GhostJumpScare.Instance.ready = false;
+                }
+
+                break;
+
             case "fruit":
                 exploreCountObject("fruit");
                 gameObject.SetActive(false);

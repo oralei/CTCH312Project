@@ -12,8 +12,11 @@ public class AudioManager : MonoBehaviour
     public AudioClip microwaveHeat;
     public AudioClip door;
     public AudioClip jumpscare;
+    public AudioClip ghostJumpscare;
     public AudioClip walking;
     public AudioClip telephone;
+    public AudioClip doorbell;
+    public AudioClip stringsHit;
 
     private void Start()
     {
