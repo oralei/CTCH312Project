@@ -22,6 +22,14 @@ public class microwaveBehaviour : MonoBehaviour
     public DialogueRunner dialogueRunner;
     public YarnFunctions YarnFunctions;
 
+    AudioManager audioManager;
+    public AudioSource audioSource;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent <AudioManager>();
+    }
+
     void Start()
     {
         mwAnimator = GetComponent<Animator>();
@@ -56,6 +64,7 @@ public class microwaveBehaviour : MonoBehaviour
                             Debug.Log("Current Layer: " + LayerMask.LayerToName(gameObject.layer));
                             Debug.Log("Starting to heat pizza...");
                             objectBody.GetComponent<Renderer>().material = onMat;
+                            audioSource.PlayOneShot(audioManager.microwaveHeat);
                             Invoke("heatPizza", 5);
                         }
                         else
@@ -93,6 +102,7 @@ public class microwaveBehaviour : MonoBehaviour
     public void heatPizza()
     {
         Debug.Log("Pizza is done heating!");
+        audioSource.PlayOneShot(audioManager.microwaveBeep);
         isDoneHeating = true;
 
         objectBody.GetComponent<Renderer>().material = offMat;

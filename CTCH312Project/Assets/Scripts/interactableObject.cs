@@ -5,7 +5,8 @@ using Yarn;
 using Yarn.Unity;
 using static FPSController;
 using System;
-using System.Collections.Generic; // Required for List<T>
+using System.Collections.Generic;
+using System.Security.Cryptography; // Required for List<T>
 
 public class interactableObject : MonoBehaviour, IInteractable
 {
@@ -13,7 +14,14 @@ public class interactableObject : MonoBehaviour, IInteractable
     public YarnFunctions YarnFunctions;
     public string objectID; // Unique identifier for different interactable objects
 
+    AudioManager audioManager;
+    public AudioSource audioSource;
 
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        audioSource = transform.GetComponent<AudioSource>();
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -136,6 +144,7 @@ public class interactableObject : MonoBehaviour, IInteractable
             case "door":
                 DoorController doorController = GetComponent<DoorController>();
                 doorController.isOpening = !doorController.isOpening;
+                audioSource.PlayOneShot(audioManager.door);
                 break;
             
             case "fruit":

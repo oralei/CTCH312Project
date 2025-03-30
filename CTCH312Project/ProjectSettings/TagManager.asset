@@ -10,6 +10,7 @@ TagManager:
   - Door
   - Item
   - Dirty
+  - Audio
   layers:
   - Default
   - TransparentFX
