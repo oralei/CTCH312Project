@@ -20,6 +20,7 @@ public class YarnFunctions : MonoBehaviour
     [YarnCommand("setTaskText")] public static void SetTaskText(string taskText) 
     { 
         GameManager.Instance.UpdateTaskText(taskText);
+        GameManager.Instance.playBlinkText();
     }
 
     [YarnCommand] public void GetName()

@@ -11,10 +11,13 @@ public class stateChanger : MonoBehaviour
     public YarnFunctions YarnFunctions;
     public interactableObject interactableObject;
 
+    AudioManager audioManager;
+    public AudioSource audioSource;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     // Update is called once per frame
@@ -33,6 +36,7 @@ public class stateChanger : MonoBehaviour
                 GameManager.setGameState(GameManager.Instance.gameEventState + 5);
 
                 brokenVase.SetActive(true);
+                audioSource.PlayOneShot(audioManager.vase);
                 vase.SetActive(false);
                 BillyMovement.MoveToDestination(new Vector3(-4.58400011f, 0.134000003f, -4.94799995f), Quaternion.Euler(0, 90, 0));
 

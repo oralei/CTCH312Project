@@ -1,11 +1,19 @@
+using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public int gameEventState = 0;
+
+    public GameObject pizzaArrow;
+
+    public closeAllDoors closeAllDoors;
 
     public GameObject HS_Handler;
     public GameObject BasementWall;
@@ -15,9 +23,25 @@ public class GameManager : MonoBehaviour
     public GameObject Lights2;
     public GameObject StairLight;
 
-    public GhostJumpScare ghostJumpScare;
+    public GameObject shadowMan1;
+    public GameObject shadowMan2;
 
-    public TextMeshProUGUI taskText; // Reference to your TMP text component
+    public GameObject bodyBag;
+
+    public GameObject darkEyes;
+
+    public GameObject finalBarriers;
+
+    public TextMeshProUGUI taskText; // Reference to TMP text component
+    public Color blinkColor = Color.yellow; // Blink color
+    public float blinkDuration = 0.2f; // Time per blink
+
+    public Volume PostProcessing;
+    private FilmGrain filmGrain;
+    private ChromaticAberration chromaticAberration;
+    private ColorAdjustments colorAdjustments;
+
+    AudioManager audioManager;
 
     public HashSet<string> objectsFound = new HashSet<string>(); // HashSet prevents duplicates automatically
 
@@ -32,6 +56,11 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+
+        Instance.PostProcessing.profile.TryGet(out filmGrain);
+        Instance.PostProcessing.profile.TryGet(out chromaticAberration);
+        Instance.PostProcessing.profile.TryGet(out colorAdjustments);
     }
 
     public static void setGameState(int newState)
@@ -39,17 +68,29 @@ public class GameManager : MonoBehaviour
         Instance.gameEventState = newState;
         Debug.Log("Set state to " + Instance.gameEventState);
 
+        if (Instance.gameEventState == 15)
+        {
+            Instance.pizzaArrow.SetActive(true);
+        }
+
         // Round 1
         if (Instance.gameEventState == 50)
         {
             Instance.HS_Handler.SetActive(true);
         }
-        else if (Instance.gameEventState == 55)  // -------- Seeking
+        else if (Instance.gameEventState == 55)  // -------- Start Seeking
         {
+            // Post Processing Changes:
+            Instance.filmGrain.intensity.value = 0.8f;
+
+            Instance.closeAllDoors.closeDoors();
+
             GhostJumpScare.Instance.setupJS();
             GhostJumpScare.Instance.ready = true;
 
-            PhoneJS.Instance.ready = true;
+            Instance.darkEyes.SetActive(true);
+
+            Instance.shadowMan1.SetActive(true);
 
             Instance.HS_Handler.SetActive(false);
         }
@@ -61,6 +102,12 @@ public class GameManager : MonoBehaviour
         }
         else if (Instance.gameEventState == 60)   // -------- Seeking
         {
+            Instance.closeAllDoors.closeDoors();
+            // Activate stairs shadowman
+            Instance.shadowMan2.SetActive(true);
+
+            PhoneJS.Instance.ready = true;
+
             Instance.HS_Handler.SetActive(false);
         }
         // Round 3
@@ -71,6 +118,12 @@ public class GameManager : MonoBehaviour
         }
         else if (Instance.gameEventState == 65)   // -------- Seeking
         {
+            Instance.closeAllDoors.closeDoors();
+
+            Instance.colorAdjustments.colorFilter.value = new Color(123f / 255f, 161f / 255f, 125f / 255f, 0);
+            Instance.chromaticAberration.intensity.value = 1f;
+
+            Instance.bodyBag.SetActive(true);  // 1.
             Instance.HS_Handler.SetActive(false);
         }
         // Final Round (Top stairs)
@@ -79,8 +132,10 @@ public class GameManager : MonoBehaviour
             Instance.HS_Handler.SetActive(true);
             Instance.UpdateTaskText("Go to the corner and count");
         }
-        else if (Instance.gameEventState == 70)   // -------- Seeking last
+        else if (Instance.gameEventState == 70)   // -------- Seeking last (top stairs)
         {
+
+            Instance.closeAllDoors.closeDoors();
             // Disable these
             Instance.HS_Handler.SetActive(false);
             Instance.BasementWall.SetActive(false);
@@ -90,12 +145,33 @@ public class GameManager : MonoBehaviour
             // Enable these
             Instance.playerLight.SetActive(true);
             Instance.StairLight.SetActive(true);
-
+            Instance.finalBarriers.SetActive(true);
         }
+
+        Instance.playBlinkText();
+        //Instance.audioManager.PlaySFX(Instance.audioManager.notify);
     }
 
     public void UpdateTaskText(string newTask)
     {
         taskText.text = "Current Task: " + newTask;
+    }
+
+    public void playBlinkText()
+    {
+        Instance.StartCoroutine(Instance.BlinkText(2)); // Blink twice
+    }
+
+    IEnumerator BlinkText(int times)
+    {
+        Color originalColor = Color.white;
+
+        for (int i = 0; i < times; i++)
+        {
+            taskText.color = blinkColor;
+            yield return new WaitForSeconds(blinkDuration);
+            taskText.color = originalColor;
+            yield return new WaitForSeconds(blinkDuration);
+        }
     }
 }

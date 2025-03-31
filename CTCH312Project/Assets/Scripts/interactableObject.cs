@@ -169,8 +169,9 @@ public class interactableObject : MonoBehaviour, IInteractable
                 if(GameManager.Instance.gameEventState == 15)
                 {
                     microwaveBehaviour.hasPizza = true;
+                    GameManager.Instance.pizzaArrow.SetActive(false);
                     Destroy(GameObject.Find("fridgePizza"));
-                }
+}
                 Debug.Log("This is a pizza slice!");
                 break;
 

@@ -147,5 +147,9 @@ public class Jumpscare : MonoBehaviour
                 rend.enabled = false; // Disable the Renderer (Makes object invisible)
             }
         }
+
+        GameObject BodyBagLight = GameObject.Find("BodyBagLight");
+        if (BodyBagLight != null && BodyBagLight.activeSelf == true)
+            BodyBagLight.SetActive(false);
     }
 }
