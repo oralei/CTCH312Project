@@ -14,6 +14,8 @@ public class interactableObject : MonoBehaviour, IInteractable
     public YarnFunctions YarnFunctions;
     public string objectID; // Unique identifier for different interactable objects
 
+    public SeekManager seekManager;
+
     AudioManager audioManager;
     public AudioSource audioSource;
 
@@ -99,7 +101,8 @@ public class interactableObject : MonoBehaviour, IInteractable
                                 dialogueRunner.StartDialogue("letsPlayNode");
                                 break;
 
-                            case 55:
+                            case 55:  // Found billy
+                                seekManager.doneCounting = false;
                                 dialogueRunner.StartDialogue("findBillyNode");
                                 break;
 
@@ -107,7 +110,8 @@ public class interactableObject : MonoBehaviour, IInteractable
                                 dialogueRunner.StartDialogue("findBillyNode");
                                 break;
 
-                            case 60:
+                            case 60: // Found billy
+                                seekManager.doneCounting = false;
                                 dialogueRunner.StartDialogue("findBillyNode");
                                 break;
 
@@ -115,7 +119,8 @@ public class interactableObject : MonoBehaviour, IInteractable
                                 dialogueRunner.StartDialogue("findBillyNode");
                                 break;
 
-                            case 65:
+                            case 65: // Found billy
+                                seekManager.doneCounting = false;
                                 dialogueRunner.StartDialogue("findBillyNode");
                                 break;
 
@@ -123,7 +128,8 @@ public class interactableObject : MonoBehaviour, IInteractable
                                 dialogueRunner.StartDialogue("findBillyNode");
                                 break;
 
-                            case 70:
+                            case 70: // Found billy
+                                seekManager.doneCounting = false;
                                 dialogueRunner.StartDialogue("topStairsNode");
                                 break;
 

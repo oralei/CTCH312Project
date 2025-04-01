@@ -9,6 +9,7 @@ using UnityEngine.Rendering.Universal;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    public SeekManager seekManager;
     public int gameEventState = 0;
 
     public GameObject pizzaArrow;
@@ -26,9 +27,8 @@ public class GameManager : MonoBehaviour
     public GameObject shadowMan1;
     public GameObject shadowMan2;
 
-    public GameObject bodyBag;
-
     public GameObject darkEyes;
+    public GameObject bodyBagTrigger;
 
     public GameObject finalBarriers;
 
@@ -123,7 +123,7 @@ public class GameManager : MonoBehaviour
             //Instance.colorAdjustments.colorFilter.value = new Color(123f / 255f, 161f / 255f, 125f / 255f, 0);
             Instance.chromaticAberration.intensity.value = 1f;
 
-            Instance.bodyBag.SetActive(true);  // 1.
+            Instance.bodyBagTrigger.SetActive(true);  // 1.
             Instance.HS_Handler.SetActive(false);
         }
         // Final Round (Top stairs)
@@ -149,7 +149,7 @@ public class GameManager : MonoBehaviour
         }
 
         Instance.playBlinkText();
-        //Instance.audioManager.PlaySFX(Instance.audioManager.notify);
+        Instance.audioManager.PlaySFX(Instance.audioManager.notify);
     }
 
     public void UpdateTaskText(string newTask)

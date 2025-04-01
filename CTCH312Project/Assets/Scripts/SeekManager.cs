@@ -2,12 +2,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
+using Yarn.Unity;
 
 public class SeekManager : MonoBehaviour
 {
     public interactableObject interactableObject;
     public GameObject NPCBilly;
     public NavMeshAgent agent;
+
+    public DialogueRunner dialogueRunner;
+    public blackFadeScreen blackFadeScreen;
+
+    public bool doneCounting;
 
     [System.Serializable]
     public struct HidingSpot
@@ -28,7 +34,8 @@ public class SeekManager : MonoBehaviour
         {
             Debug.Log($"Location: {spot.Location}, Rotation: {spot.Rotation}, Pose: {spot.Pose}");
         }
-        
+
+        dialogueRunner.onDialogueComplete.AddListener(OnDialogueEnd);
     }
 
     // Update is called once per frame
@@ -74,23 +81,28 @@ public class SeekManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        blackFadeScreen.FadeToBlack(blackFadeScreen.fadeDuration);
         if (other.CompareTag("Player"))
         {
             if (GameManager.Instance.gameEventState == 50)
             {
                 GameManager.setGameState(55);
+                doneCounting = true;
             }
             else if(GameManager.Instance.gameEventState == 56)
             {
                 GameManager.setGameState(60);
+                doneCounting = true;
             }
             else if (GameManager.Instance.gameEventState == 61)
             {
                 GameManager.setGameState(65);
+                doneCounting = true;
             }
             else if (GameManager.Instance.gameEventState == 66)
             {
                 GameManager.setGameState(70);
+                doneCounting = true;
             }
             if (GameManager.Instance.gameEventState >= 50 && GameManager.Instance.gameEventState <= 66)
             {
@@ -120,5 +132,11 @@ public class SeekManager : MonoBehaviour
         agent.Warp(hs.Location);
         NPCBilly.transform.eulerAngles = new Vector3(0, hs.Rotation, 0);
         hidingSpots.Remove(hs);
+    }
+
+    private void OnDialogueEnd()
+    {
+        if (doneCounting)
+            blackFadeScreen.FadeFromBlack(1f);
     }
 }
