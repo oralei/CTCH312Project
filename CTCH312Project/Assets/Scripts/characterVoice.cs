@@ -1,5 +1,7 @@
+using NUnit.Framework;
 using TMPro;
 using UnityEngine;
+using System.Collections.Generic;
 using Yarn.Unity;
 
 public class characterVoice : MonoBehaviour
@@ -18,11 +20,11 @@ public class characterVoice : MonoBehaviour
 
     AudioManager audioManager;
 
-    public AudioClip a;
-    public AudioClip e;
-    public AudioClip i;
-    public AudioClip o;
-    public AudioClip u;
+    [Header("---------Billy Voice Files---------")]
+    public List<AudioClip> BillyClips = new List<AudioClip>();
+
+    [Header("---------Kevin Voice Files---------")]
+    public List<AudioClip> KevinClips = new List<AudioClip>();
 
     private void Awake()
     {
@@ -60,25 +62,53 @@ public class characterVoice : MonoBehaviour
 
             Debug.Log("Character typed: " + typedCharacter);
 
-            switch (typedCharacter) {
-                case 'a':
-                    audioManager.PlaySFX(a);
-                    break;
-                case 'e':
-                    audioManager.PlaySFX(e);
-                    break;
-                case 'i':
-                    audioManager.PlaySFX(i);
-                    break;
-                case 'o':
-                    audioManager.PlaySFX(o);
-                    break;
-                case 'u':
-                    audioManager.PlaySFX(u);
-                    break;
+            if (characterName.text == "Billy")
+            {
+                switch (typedCharacter)
+                {
+                    case 'a':
+                        audioManager.PlaySFX(BillyClips[0]);
+                        break;
+                    case 'e':
+                        audioManager.PlaySFX(BillyClips[1]);
+                        break;
+                    case 'i':
+                        audioManager.PlaySFX(BillyClips[2]);
+                        break;
+                    case 'o':
+                        audioManager.PlaySFX(BillyClips[3]);
+                        break;
+                    case 'u':
+                        audioManager.PlaySFX(BillyClips[4]);
+                        break;
 
-                default:
-                break;
+                    default:
+                        break;
+                }
+            }
+            if (characterName.text == "Kevin")
+            {
+                switch (typedCharacter)
+                {
+                    case 'a':
+                        audioManager.PlaySFX(KevinClips[0]);
+                        break;
+                    case 'e':
+                        audioManager.PlaySFX(KevinClips[1]);
+                        break;
+                    case 'i':
+                        audioManager.PlaySFX(KevinClips[2]);
+                        break;
+                    case 'o':
+                        audioManager.PlaySFX(KevinClips[3]);
+                        break;
+                    case 'u':
+                        audioManager.PlaySFX(KevinClips[4]);
+                        break;
+
+                    default:
+                        break;
+                }
             }
             //audioManager.PlaySFX(audioManager.notify);
         }

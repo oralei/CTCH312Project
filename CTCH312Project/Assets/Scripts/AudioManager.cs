@@ -18,6 +18,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip doorbell;
     public AudioClip stringsHit;
     public AudioClip notify;
+    public AudioClip lockedDoor;
 
     private void Start()
     {

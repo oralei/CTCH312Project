@@ -16,6 +16,8 @@ public class interactableObject : MonoBehaviour, IInteractable
 
     public SeekManager seekManager;
 
+    public FinalJumpScare finalJumpScare;
+
     AudioManager audioManager;
     public AudioSource audioSource;
 
@@ -198,6 +200,15 @@ public class interactableObject : MonoBehaviour, IInteractable
                     Destroy(GameObject.Find("brokenVase"));
                     GameManager.setGameState(45);
                     GameManager.Instance.UpdateTaskText("Talk to Billy");
+                }
+                break;
+
+            case "lockedDoor":
+                OnDialogueStart();
+                dialogueRunner.StartDialogue("noEntranceNode");
+                if (GameManager.Instance.gameEventState == 75)
+                {
+                    finalJumpScare.triggerFinalJS();
                 }
                 break;
 

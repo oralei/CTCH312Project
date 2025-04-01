@@ -138,7 +138,6 @@ public class GameManager : MonoBehaviour
             Instance.closeAllDoors.closeDoors();
             // Disable these
             Instance.HS_Handler.SetActive(false);
-            Instance.BasementWall.SetActive(false);
             Instance.Lights1.SetActive(false);
             Instance.Lights2.SetActive(false);
 
@@ -146,6 +145,10 @@ public class GameManager : MonoBehaviour
             Instance.playerLight.SetActive(true);
             Instance.StairLight.SetActive(true);
             Instance.finalBarriers.SetActive(true);
+        }
+        else if (Instance.gameEventState == 75)
+        {
+            Instance.BasementWall.SetActive(false);
         }
 
         Instance.playBlinkText();

@@ -262,14 +262,37 @@ position: 1697,1
 ===
 
 title: topStairsNode
-position: 1940,-1
+position: 1931,2
 ---
 <<GetState YarnFunctions>>
 
-Billy: ...
-Billy: Down...
-Billy: ...
-Billy: There...
+<<if $gameState == 70>>
+    Billy: ...
+    Billy: Down...
+    Billy: ...
+    Billy: There...
+    <<setState 75>>
+    <<setTaskText "Investigate the basement">>
+<<elseif $gameState == 75>>
+    Billy: ...
+    Billy: I...
+    Billy: ...
+<<endif>>
+<<stop>>
+===
+
+title: noEntranceNode
+position: 2153,2
+---
+<<GetState YarnFunctions>>
+
+<<if $gameState == 75>>
+    The door's locked and the tape is undisturbed.
+    Guess there's nothing wrong down here.
+<<else>>
+    It's locked.
+    Let's just go back upstairs.
+<<endif>>
 <<stop>>
 ===
 
