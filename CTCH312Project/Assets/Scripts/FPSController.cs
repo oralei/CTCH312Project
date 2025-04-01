@@ -9,9 +9,10 @@ using Yarn.Unity;
 public class FPSController : MonoBehaviour
 {
     public Camera playerCamera;
+    public GetName getName;
 
     // Yarn Variables
-    public static string playerName = "Godfrey";
+    public static string playerName;
     public static int playerAge = 21;
 
     // Movement Variables
@@ -44,6 +45,13 @@ public class FPSController : MonoBehaviour
     // Items
 
     CharacterController characterController;
+    private void Awake()
+    {
+        if(playerName == null)
+        {
+            playerName = "Bob";
+        }
+    }
     void Start()
     {
         dialogueRunner.onDialogueComplete.AddListener(OnDialogueEnd);

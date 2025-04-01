@@ -213,6 +213,12 @@ public class interactableObject : MonoBehaviour, IInteractable
                 TriggerOneLineDialogue("Don't drop it!");
                 break;
 
+            case "teddyBear":
+                exploreCountObject("teddyBear");
+                OnDialogueStart();
+                TriggerOneLineDialogue("I have one just like it at home...");
+                break;
+
             case "bookcase":
                 exploreCountObject("bookcase");
                 OnDialogueStart();

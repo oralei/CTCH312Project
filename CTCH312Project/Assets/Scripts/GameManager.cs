@@ -120,7 +120,7 @@ public class GameManager : MonoBehaviour
         {
             Instance.closeAllDoors.closeDoors();
 
-            Instance.colorAdjustments.colorFilter.value = new Color(123f / 255f, 161f / 255f, 125f / 255f, 0);
+            //Instance.colorAdjustments.colorFilter.value = new Color(123f / 255f, 161f / 255f, 125f / 255f, 0);
             Instance.chromaticAberration.intensity.value = 1f;
 
             Instance.bodyBag.SetActive(true);  // 1.
