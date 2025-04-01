@@ -17,6 +17,7 @@ public class characterVoice : MonoBehaviour
 
     private string fullText = ""; // Stores the full dialogue text
     private int revealedCharacterCount = 0; // Tracks how many characters have been revealed
+    private string voiceName;
 
     AudioManager audioManager;
 
@@ -25,6 +26,12 @@ public class characterVoice : MonoBehaviour
 
     [Header("---------Kevin Voice Files---------")]
     public List<AudioClip> KevinClips = new List<AudioClip>();
+
+    [Header("---------Mom Voice Files---------")]
+    public List<AudioClip> MomClips = new List<AudioClip>();
+
+    [Header("---------Player Voice Files---------")]
+    public List<AudioClip> PlayerClips = new List<AudioClip>();
 
     private void Awake()
     {
@@ -42,12 +49,13 @@ public class characterVoice : MonoBehaviour
 
     private void resetCounter(string test)
     {
-        Debug.Log(test);
+        voiceName = characterName.text;
         revealedCharacterCount = 0;
     }
 
     private void OnCharacterTyped()
     {
+        voiceName = characterName.text;
         if (dialogueText != null)
         {
             // Get the next revealed character
@@ -62,7 +70,7 @@ public class characterVoice : MonoBehaviour
 
             Debug.Log("Character typed: " + typedCharacter);
 
-            if (characterName.text == "Billy")
+            if (voiceName == "Billy")
             {
                 switch (typedCharacter)
                 {
@@ -86,7 +94,7 @@ public class characterVoice : MonoBehaviour
                         break;
                 }
             }
-            if (characterName.text == "Kevin")
+            else if (voiceName == "Kevin")
             {
                 switch (typedCharacter)
                 {
@@ -110,7 +118,54 @@ public class characterVoice : MonoBehaviour
                         break;
                 }
             }
-            //audioManager.PlaySFX(audioManager.notify);
+            else if (voiceName == "Billy's Mom")
+            {
+                switch (typedCharacter)
+                {
+                    case 'a':
+                        audioManager.PlaySFX(MomClips[0]);
+                        break;
+                    case 'e':
+                        audioManager.PlaySFX(MomClips[1]);
+                        break;
+                    case 'i':
+                        audioManager.PlaySFX(MomClips[2]);
+                        break;
+                    case 'o':
+                        audioManager.PlaySFX(MomClips[3]);
+                        break;
+                    case 'u':
+                        audioManager.PlaySFX(MomClips[4]);
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                switch (typedCharacter)
+                {
+                    case 'a':
+                        audioManager.PlaySFX(PlayerClips[0]);
+                        break;
+                    case 'e':
+                        audioManager.PlaySFX(PlayerClips[1]);
+                        break;
+                    case 'i':
+                        audioManager.PlaySFX(PlayerClips[2]);
+                        break;
+                    case 'o':
+                        audioManager.PlaySFX(PlayerClips[3]);
+                        break;
+                    case 'u':
+                        audioManager.PlaySFX(PlayerClips[4]);
+                        break;
+
+                    default:
+                        break;
+                }
+            }
         }
     }
 }

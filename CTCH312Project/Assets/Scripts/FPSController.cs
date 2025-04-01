@@ -37,6 +37,8 @@ public class FPSController : MonoBehaviour
 
     public BillyMovement BillyMovement;
 
+    public characterVoice characterVoice;
+
     //public KeyCode continueActionKeyCode = KeyCode.Space;
 
     Vector3 moveDirection = Vector3.zero;
@@ -192,6 +194,7 @@ public class FPSController : MonoBehaviour
     public void OnDialogueEnd()
     {
         Debug.Log("Dialogue has finished!");
+        characterVoice.characterName.text = "";
 
         // Re-enable player movement
         canMove = true;

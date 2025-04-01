@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
 
     [Header("---------Audio Clip---------")]
     public AudioClip background;
+    public AudioClip creditMusic;
     public AudioClip microwaveBeep;
     public AudioClip microwaveHeat;
     public AudioClip door;

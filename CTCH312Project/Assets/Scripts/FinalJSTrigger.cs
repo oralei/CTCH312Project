@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FinalJSTrigger : MonoBehaviour
 {
@@ -27,8 +28,8 @@ public class FinalJSTrigger : MonoBehaviour
             audioManager.PlaySFX(scare1);
             audioManager.PlaySFX(scare2);
 
-            Invoke("fadeAfter", 1.6f);
-
+            Invoke("fadeAfter", 1.2f);
+            Invoke("sceneChange", 6.8f);
             Debug.Log("boo!");
         }
     }
@@ -36,5 +37,9 @@ public class FinalJSTrigger : MonoBehaviour
     private void fadeAfter()
     {
         blackFadeScreen.FadeToBlack(1f);
+    }
+    private void sceneChange()
+    {
+        SceneManager.LoadScene("EndScene");
     }
 }

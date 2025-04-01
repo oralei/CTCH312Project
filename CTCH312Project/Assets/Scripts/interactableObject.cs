@@ -295,9 +295,15 @@ public class interactableObject : MonoBehaviour, IInteractable
                 break;
 
             case "remote":
+                exploreCountObject("remote");
                 OnDialogueStart();
                 TriggerOneLineDialogue("I probably shouldn't change the channel...");
-                Debug.Log("remote");
+                break;
+
+            case "pepsi":
+                exploreCountObject("pepsi");
+                OnDialogueStart();
+                TriggerOneLineDialogue("Ooo... look a Pepsi!");
                 break;
 
             case "object1":
