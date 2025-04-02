@@ -105,6 +105,7 @@ public class interactableObject : MonoBehaviour, IInteractable
 
                             case 55:  // Found billy
                                 seekManager.doneCounting = false;
+                                GameManager.Instance.resetPose();
                                 dialogueRunner.StartDialogue("findBillyNode");
                                 break;
 
@@ -113,6 +114,7 @@ public class interactableObject : MonoBehaviour, IInteractable
                                 break;
 
                             case 60: // Found billy
+                                GameManager.Instance.resetPose();
                                 seekManager.doneCounting = false;
                                 dialogueRunner.StartDialogue("findBillyNode");
                                 break;
@@ -122,6 +124,7 @@ public class interactableObject : MonoBehaviour, IInteractable
                                 break;
 
                             case 65: // Found billy
+                                GameManager.Instance.resetPose();
                                 seekManager.doneCounting = false;
                                 dialogueRunner.StartDialogue("findBillyNode");
                                 break;
@@ -131,6 +134,7 @@ public class interactableObject : MonoBehaviour, IInteractable
                                 break;
 
                             case 70: // Found billy
+                                GameManager.Instance.resetPose();
                                 seekManager.doneCounting = false;
                                 dialogueRunner.StartDialogue("topStairsNode");
                                 break;

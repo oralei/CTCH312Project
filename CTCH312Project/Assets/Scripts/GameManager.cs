@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public SeekManager seekManager;
     public int gameEventState = 0;
 
+    public Animator BillyAnimator;
+
     public GameObject pizzaArrow;
 
     public closeAllDoors closeAllDoors;
@@ -176,5 +178,15 @@ public class GameManager : MonoBehaviour
             taskText.color = originalColor;
             yield return new WaitForSeconds(blinkDuration);
         }
+    }
+
+    public void resetPose()
+    {
+        if (Instance.BillyAnimator.GetBool("isLaying"))
+            Instance.BillyAnimator.SetBool("isLaying", false);
+
+        if (Instance.BillyAnimator.GetBool("isCrouching"))
+            Instance.BillyAnimator.SetBool("isCrouching", false);
+
     }
 }

@@ -13,6 +13,8 @@ public class SeekManager : MonoBehaviour
     public DialogueRunner dialogueRunner;
     public blackFadeScreen blackFadeScreen;
 
+    public Animator animator;
+
     public bool doneCounting;
 
     [System.Serializable]
@@ -21,7 +23,8 @@ public class SeekManager : MonoBehaviour
         public string spotName;
         public Vector3 Location;
         public float Rotation;
-        public Animation Pose;
+        public bool Crouching;
+        public bool Laying;
     }
 
     [SerializeField]
@@ -30,53 +33,13 @@ public class SeekManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        foreach (var spot in hidingSpots)
-        {
-            Debug.Log($"Location: {spot.Location}, Rotation: {spot.Rotation}, Pose: {spot.Pose}");
-        }
-
         dialogueRunner.onDialogueComplete.AddListener(OnDialogueEnd);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Keypad0))
-        {
-            hideBilly(hidingSpots[0]);
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad1))
-        {
-            hideBilly(hidingSpots[1]);
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad2))
-        {
-            hideBilly(hidingSpots[2]);
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad3))
-        {
-            hideBilly(hidingSpots[3]);
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad4))
-        {
-            hideBilly(hidingSpots[4]);
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad5))
-        {
-            hideBilly(hidingSpots[5]);
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad6))
-        {
-            hideBilly(hidingSpots[6]);
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad7))
-        {
-            hideBilly(hidingSpots[7]);
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad8))
-        {
-            hideBilly(hidingSpots[8]);
-        }
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -132,6 +95,15 @@ public class SeekManager : MonoBehaviour
         agent.Warp(hs.Location);
         NPCBilly.transform.eulerAngles = new Vector3(0, hs.Rotation, 0);
         hidingSpots.Remove(hs);
+
+        if(hs.Crouching)
+        {
+            animator.SetBool("isCrouching", true);
+        }
+        if (hs.Laying)
+        {
+            animator.SetBool("isLaying", true);
+        }
     }
 
     private void OnDialogueEnd()

@@ -14,6 +14,8 @@ public class BillyMovement : MonoBehaviour
     private bool isProcessingQueue = false;
     private Coroutine queueProcessCoroutine;
 
+    public Animator animator;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -25,7 +27,7 @@ public class BillyMovement : MonoBehaviour
     void Update()
     {
         //m_Agent.destination = player.transform.position;
-
+        animator.SetBool("isMoving", m_Agent.velocity.magnitude > 0.01f);
     }
 
     // Public function to add a destination to the queue
