@@ -4,7 +4,7 @@ public class AudioManager : MonoBehaviour
 {
     [Header("---------Audio Source---------")]
     [SerializeField] AudioSource musicSource;
-    [SerializeField] AudioSource SFXSource;
+    [SerializeField] public AudioSource SFXSource;
 
     [Header("---------Audio Clip---------")]
     public AudioClip background;
@@ -20,6 +20,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip stringsHit;
     public AudioClip notify;
     public AudioClip lockedDoor;
+    public AudioClip buttonPress;
+    public AudioClip eatSound;
 
     private void Start()
     {

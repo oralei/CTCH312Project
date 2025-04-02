@@ -139,6 +139,10 @@ public class interactableObject : MonoBehaviour, IInteractable
                                 dialogueRunner.StartDialogue("topStairsNode");
                                 break;
 
+                            case 75:
+                                dialogueRunner.StartDialogue("topStairsNode");
+                                break;
+
                             default:
                                 Debug.Log("DANGER: No case for state " + GameManager.Instance.gameEventState);
                                 GameObject.FindWithTag("Player").GetComponent<FPSController>().OnDialogueEnd();
@@ -174,6 +178,9 @@ public class interactableObject : MonoBehaviour, IInteractable
 
             case "fruit":
                 exploreCountObject("fruit");
+                audioManager.SFXSource.pitch = UnityEngine.Random.Range(0.6f, 1.2f); // Randomize pitch
+                audioManager.PlaySFX(audioManager.eatSound);
+                audioManager.SFXSource.pitch = 1f;
                 gameObject.SetActive(false);
                 break;
 
@@ -213,6 +220,7 @@ public class interactableObject : MonoBehaviour, IInteractable
                 if (GameManager.Instance.gameEventState == 75)
                 {
                     finalJumpScare.triggerFinalJS();
+                    GameManager.Instance.billyAgent.Warp(new Vector3(0f, 0f, 0f));
                 }
                 break;
 

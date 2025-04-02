@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Xml;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
@@ -13,6 +14,7 @@ public class GameManager : MonoBehaviour
     public int gameEventState = 0;
 
     public Animator BillyAnimator;
+    public NavMeshAgent billyAgent;
 
     public GameObject pizzaArrow;
 
