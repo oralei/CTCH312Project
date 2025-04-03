@@ -35,7 +35,10 @@ public class YarnFunctions : MonoBehaviour
 
     [YarnCommand] public void parentsLeave()
     {
-        Destroy(GameObject.Find("NPC_Mom"));
+        GameObject parents = GameObject.Find("NPC_Mom");
+        walkOutDoor script = parents.GetComponent<walkOutDoor>();
+
+        script.TriggerWalk();
     }
 
     [YarnCommand] public void GetHasPizza()

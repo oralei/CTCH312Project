@@ -19,6 +19,8 @@ public class FinalJSTrigger : MonoBehaviour
     public AudioClip scare1;
     public AudioSource audioSource;
 
+    public AudioSource ding;
+
     [SerializeField] PlayableDirector timeline;
 
     private void Awake()
@@ -38,6 +40,8 @@ public class FinalJSTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            ding.Stop();
+
             fpsController = GameObject.Find("Player").GetComponent<FPSController>();
             fpsController.runSpeed = 0.5f;
             fpsController.canMoveMouse = false;

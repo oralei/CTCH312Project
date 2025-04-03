@@ -8,6 +8,8 @@ public class FinalJumpScare : MonoBehaviour
     public GameObject doorArrow;
     public AudioSource audioSource;
 
+    public AudioClip bangDing;
+
     public interactableObject basementDoor;
     public DialogueRunner dialogueRunner;
 
@@ -40,7 +42,8 @@ public class FinalJumpScare : MonoBehaviour
         audioManager.PlaySFX(audioManager.lockedDoor);
         if (GameManager.Instance.gameEventState == 75)
         {
-            Invoke("playDoorBell", 1f);
+            Invoke("playDoorBell", 1.23f);
+            Invoke("playBangDingOw", 2f);
             Invoke("changeTaskDoorbell", (audioManager.doorbell.length - 5f));
             jumpscareTrigger.SetActive(true);
         }
@@ -56,5 +59,10 @@ public class FinalJumpScare : MonoBehaviour
     private void playDoorBell()
     {
         audioManager.PlaySFX(audioManager.doorbell);
+    }
+
+    private void playBangDingOw()
+    {
+        audioSource.PlayOneShot(bangDing);
     }
 }
