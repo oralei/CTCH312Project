@@ -161,6 +161,36 @@ public class characterVoice : MonoBehaviour
                     case 'u':
                         audioManager.PlaySFX(PlayerClips[4]);
                         break;
+                    case '1':
+                        audioManager.PlaySFX(PlayerClips[5]);
+                        break;
+                    case '2':
+                        audioManager.PlaySFX(PlayerClips[6]);
+                        break;
+                    case '3':
+                        audioManager.PlaySFX(PlayerClips[7]);
+                        break;
+                    case '4':
+                        audioManager.PlaySFX(PlayerClips[8]);
+                        break;
+                    case '5':
+                        audioManager.PlaySFX(PlayerClips[9]);
+                        break;
+                    case '6':
+                        audioManager.PlaySFX(PlayerClips[10]);
+                        break;
+                    case '7':
+                        audioManager.PlaySFX(PlayerClips[11]);
+                        break;
+                    case '8':
+                        audioManager.PlaySFX(PlayerClips[12]);
+                        break;
+                    case '9':
+                        audioManager.PlaySFX(PlayerClips[13]);
+                        break;
+                    case '0':
+                        audioManager.PlaySFX(PlayerClips[14]);
+                        break;
 
                     default:
                         break;

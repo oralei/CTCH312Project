@@ -128,8 +128,11 @@ position: 991,4
         Billy: I'm not!
     Billy: I was watching TV and it just fell...
     -> Okay well, I'm gonna clean this up.
-    <<setState 40>>
+    -> After I clean this up I'm telling your parents.
+        Billy: I told you already!
+        Billy: I didn't do it!
     <<setTaskText "Clean up the broken vase">>
+    <<setState 40>>
 <<endif>>
 
 <<stop>>
@@ -144,8 +147,12 @@ position: 1225,2
     Billy: I'm kinda bored of the TV...
     Billy: Can we play a game?
     -> Uh...
+        -> You want to play a game after breaking that vase?
+            Billy: What vase?
+            Billy: Let's play a game!
+                -> Uh...
+                    -> Fine.
         -> Sure?
-        -> I'd be happy to!
         -> No.
             Billy: Please...
                 -> No.
@@ -173,6 +180,9 @@ position: 1225,2
     Billy: Then you have to find me!
     -> Okay sounds good.
         -> Your mom told me not to go to the basement, okay?
+    -> You better be good at hiding, kid.
+        -> Also your mom told me not to go to the basement.
+            -> No going down there, alright?
         Billy: Okay!
         Billy: Now go to the corner there and count!
     <<setState 50>>
@@ -197,6 +207,7 @@ position: 1462,2
 <<endif>>
 
 <<if $gameState == 55>>
+    ...
     10...
     9...
     8...
