@@ -22,6 +22,7 @@ public class FPSController : MonoBehaviour
     public float gravity = 10f;
 
     public bool canMove = true;
+    public bool canMoveMouse = true;
 
     // Interaction Variables
     public float interactDistance = 1.5f;
@@ -110,7 +111,7 @@ public class FPSController : MonoBehaviour
         #region Handles Rotation
         characterController.Move(moveDirection * Time.deltaTime);
 
-        if (canMove)
+        if (canMoveMouse)
         {
             rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
             rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
@@ -198,6 +199,7 @@ public class FPSController : MonoBehaviour
 
         // Re-enable player movement
         canMove = true;
+        canMoveMouse = true;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 

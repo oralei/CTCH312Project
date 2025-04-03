@@ -124,7 +124,6 @@ public class GameManager : MonoBehaviour
         {
             Instance.closeAllDoors.closeDoors();
 
-            //Instance.colorAdjustments.colorFilter.value = new Color(123f / 255f, 161f / 255f, 125f / 255f, 0);
             Instance.chromaticAberration.intensity.value = 1f;
 
             Instance.bodyBagTrigger.SetActive(true);  // 1.
@@ -138,7 +137,8 @@ public class GameManager : MonoBehaviour
         }
         else if (Instance.gameEventState == 70)   // -------- Seeking last (top stairs)
         {
-
+            Instance.audioManager.musicSource.Stop();
+            Instance.colorAdjustments.colorFilter.value = new Color(211f / 255f, 211f / 255f, 255f / 255f, 0);
             Instance.closeAllDoors.closeDoors();
             // Disable these
             Instance.HS_Handler.SetActive(false);

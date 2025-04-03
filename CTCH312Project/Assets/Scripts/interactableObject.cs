@@ -343,6 +343,7 @@ public class interactableObject : MonoBehaviour, IInteractable
     {
         // Disable player movement
         GameObject.FindWithTag("Player").GetComponent<FPSController>().canMove = false;
+        GameObject.FindWithTag("Player").GetComponent<FPSController>().canMoveMouse = false;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }

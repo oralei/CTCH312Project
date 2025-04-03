@@ -5,6 +5,7 @@ public class FinalJumpScare : MonoBehaviour
 {
     AudioManager audioManager;
     public GameObject jumpscareTrigger;
+    public GameObject doorArrow;
     public AudioSource audioSource;
 
     public interactableObject basementDoor;
@@ -48,6 +49,7 @@ public class FinalJumpScare : MonoBehaviour
     private void changeTaskDoorbell()
     {
         GameManager.setGameState(80);
+        doorArrow.SetActive(true);
         GameManager.Instance.UpdateTaskText("Answer the door");
     }
 
