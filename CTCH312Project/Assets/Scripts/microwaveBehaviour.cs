@@ -4,10 +4,14 @@ using Yarn.Unity;
 
 public class microwaveBehaviour : MonoBehaviour
 {
+    public static microwaveBehaviour Instance;
+
     private Animator mwAnimator;
     private bool isOpen;
 
     static public bool hasPizza;
+    [SerializeField] public GameObject handPizza;
+
     private bool isPizzaInside;
     private bool isHeating;
     private bool isDoneHeating;
@@ -27,6 +31,7 @@ public class microwaveBehaviour : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent <AudioManager>();
     }
 
@@ -67,9 +72,11 @@ public class microwaveBehaviour : MonoBehaviour
                             audioSource.PlayOneShot(audioManager.microwaveHeat);
                             Invoke("heatPizza", 5);
                         }
-                        else
+                        else // pizza is done heating
                         {
+                            audioManager.PlaySFX(audioManager.squish);
                             isPizzaInside = false;
+                            handPizza.SetActive(true);
                             pizzaObject.gameObject.SetActive(false);
                             GameManager.Instance.UpdateTaskText("Serve food to Billy");
                             GameManager.setGameState(20);
@@ -81,6 +88,7 @@ public class microwaveBehaviour : MonoBehaviour
                         if(hasPizza == true)
                         {
                             pizzaObject.gameObject.SetActive(true);
+                            handPizza.SetActive(false);
                             isPizzaInside = true;
                         }
                         else

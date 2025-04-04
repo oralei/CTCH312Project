@@ -35,6 +35,9 @@ public class walkOutDoor : MonoBehaviour
         momAnim.SetBool("isMoving", true);
         dadAnim.SetBool("isMoving", true);
 
+        mom.GetComponent<CapsuleCollider>().enabled = false;
+        dad.GetComponent<CapsuleCollider>().enabled = false;
+
         mom.GetComponent<Billboard>().enabled = false;
         dad.GetComponent<Billboard>().enabled = false;
 

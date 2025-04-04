@@ -75,6 +75,7 @@ public class interactableObject : MonoBehaviour, IInteractable
 
                             // Pizza is heated and ready to give to Billy:
                             case 20:
+                                microwaveBehaviour.Instance.handPizza.SetActive(false);
                                 dialogueRunner.StartDialogue("feedBillyNode");
                                 break;
 
@@ -187,10 +188,12 @@ public class interactableObject : MonoBehaviour, IInteractable
             case "pizza":
                 if(GameManager.Instance.gameEventState == 15)
                 {
+                    audioManager.PlaySFX(audioManager.squish);
                     microwaveBehaviour.hasPizza = true;
                     GameManager.Instance.pizzaArrow.SetActive(false);
                     Destroy(GameObject.Find("fridgePizza"));
-}
+                    microwaveBehaviour.Instance.handPizza.SetActive(true);
+                }
                 Debug.Log("This is a pizza slice!");
                 break;
 
@@ -241,7 +244,8 @@ public class interactableObject : MonoBehaviour, IInteractable
                 break;
 
             case "cat":
-                audioSource.PlayOneShot(audioManager.meow);
+                explodeMaxwell catScript = gameObject.GetComponent<explodeMaxwell>();
+                catScript.Explode();
                 break;
 
             case "coffee":

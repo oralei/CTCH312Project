@@ -24,6 +24,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip eatSound;
     public AudioClip pickUpPhone;
     public AudioClip meow;
+    public AudioClip explode;
+    public AudioClip squish;
 
     private void Start()
     {
