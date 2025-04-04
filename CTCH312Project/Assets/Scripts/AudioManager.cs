@@ -22,6 +22,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip lockedDoor;
     public AudioClip buttonPress;
     public AudioClip eatSound;
+    public AudioClip pickUpPhone;
+    public AudioClip meow;
 
     private void Start()
     {

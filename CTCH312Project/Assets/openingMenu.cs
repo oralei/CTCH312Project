@@ -22,6 +22,7 @@ public class openingMenu : MonoBehaviour
 
     private void toggleCursor()
     {
+        Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
 }

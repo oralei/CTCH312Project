@@ -6,6 +6,7 @@ public class PhoneJS : MonoBehaviour
     public AudioSource audioSource;
 
     public bool ready = false;
+    public bool pickUp = false;
 
     public static PhoneJS Instance { get; private set; }
 
@@ -35,8 +36,9 @@ public class PhoneJS : MonoBehaviour
         }
     }
 
-    void ringPhone()
+    public void ringPhone()
     {
+        pickUp = true;
         audioSource.PlayOneShot(audioManager.telephone);
         ready = false;
     }

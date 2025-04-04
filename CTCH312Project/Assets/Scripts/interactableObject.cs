@@ -225,9 +225,23 @@ public class interactableObject : MonoBehaviour, IInteractable
                 break;
 
             case "phone":
-                exploreCountObject("phone");
-                OnDialogueStart();
-                TriggerOneLineDialogue("That's an old telephone.");
+                if(PhoneJS.Instance.pickUp)
+                {
+                    OnDialogueStart();
+                    TriggerOneLineDialogue("...");
+                    audioManager.PlaySFX(audioManager.pickUpPhone);
+                    PhoneJS.Instance.pickUp = false;
+                }
+                else
+                {
+                    exploreCountObject("phone");
+                    OnDialogueStart();
+                    TriggerOneLineDialogue("That's an old telephone.");
+                }    
+                break;
+
+            case "cat":
+                audioSource.PlayOneShot(audioManager.meow);
                 break;
 
             case "coffee":
