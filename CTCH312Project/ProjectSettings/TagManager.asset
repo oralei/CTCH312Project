@@ -11,6 +11,7 @@ TagManager:
   - Item
   - Dirty
   - Audio
+  - Cat
   layers:
   - Default
   - TransparentFX
