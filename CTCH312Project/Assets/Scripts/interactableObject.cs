@@ -89,6 +89,7 @@ public class interactableObject : MonoBehaviour, IInteractable
 
                             case 35:
                                 dialogueRunner.StartDialogue("brokenVaseNode");
+                                brokenVase.Instance.wallBroom.layer = LayerMask.NameToLayer("interactableLayer");
                                 break;
 
                             case 40:
@@ -206,14 +207,38 @@ public class interactableObject : MonoBehaviour, IInteractable
                 }
                 else if (GameManager.Instance.gameEventState == 35)
                 {
+                    OnDialogueStart();
                     TriggerOneLineDialogue("Let's ask Billy what happened.");
                 }
                 else if (GameManager.Instance.gameEventState == 40)
                 {
                     // Clean vase:
-                    Destroy(GameObject.Find("brokenVase"));
-                    GameManager.setGameState(45);
-                    GameManager.Instance.UpdateTaskText("Talk to Billy");
+                    if (brokenVase.hasBroom == false)
+                    {
+                        OnDialogueStart();
+                        TriggerOneLineDialogue("I need something to sweep this up first.");
+                    }
+                    else
+                    {
+                        brokenVase.Instance.cleanUpVase();
+                    }
+
+                }
+                break;
+
+            case "broom":
+                if(GameManager.Instance.gameEventState == 40)
+                {
+                    brokenVase.hasBroom = true;
+                    brokenVase.Instance.getBroom();
+                }
+                break;
+
+            case "garbage":
+                if (GameManager.Instance.gameEventState == 40 && brokenVase.Instance.cleanedUpVase == true)
+                {
+                    brokenVase.Instance.garbage();
+                    brokenVase.Instance.garbageArrow.SetActive(false);
                 }
                 break;
 
