@@ -113,6 +113,9 @@ public class GameManager : MonoBehaviour
             PhoneJS.Instance.ready = true;
 
             Instance.HS_Handler.SetActive(false);
+
+            BehindJumpscare.Instance.alpacaReady = true;
+            BehindJumpscare.Instance.poster.SetActive(true);
         }
         // Round 3
         else if (Instance.gameEventState == 61)
