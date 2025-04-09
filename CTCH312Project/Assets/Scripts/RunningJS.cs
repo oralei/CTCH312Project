@@ -46,6 +46,7 @@ public class RunningJS : MonoBehaviour
         }
     }
 
+    // Activates running ghost jump scare
     void triggerRunningJS()
     {
         Debug.Log("Boo!");

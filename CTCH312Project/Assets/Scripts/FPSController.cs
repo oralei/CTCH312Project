@@ -48,13 +48,17 @@ public class FPSController : MonoBehaviour
     // Items
 
     CharacterController characterController;
+    
+    // Sets default name to Bob if player did not select a name to use
     private void Awake()
     {
-        if(playerName == null)
+        if(playerName == null || playerName == "")
         {
             playerName = "Bob";
         }
     }
+    
+    // Subscribes to onDialogueEnd event and diables cursor 
     void Start()
     {
         dialogueRunner.onDialogueComplete.AddListener(OnDialogueEnd);
@@ -63,7 +67,8 @@ public class FPSController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
-
+    
+    // Constantly checks player input for object interaction and movement
     void Update()
     {
         CheckForInteractable();
@@ -122,6 +127,7 @@ public class FPSController : MonoBehaviour
         #endregion
     }
 
+    // Uses raycast to check for objects on the interactable layer
     void CheckForInteractable()
     {
         Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
@@ -186,6 +192,7 @@ public class FPSController : MonoBehaviour
         ClearOutline(); // No object detected, clear outline
     }
 
+    // Deactivates outline script
     void ClearOutline()
     {
         if (currentOutline != null)
@@ -196,6 +203,7 @@ public class FPSController : MonoBehaviour
         currentOutline = null;
     }
 
+    // Reactivates player movement when dialogue finishes
     public void OnDialogueEnd()
     {
         Debug.Log("Dialogue has finished!");

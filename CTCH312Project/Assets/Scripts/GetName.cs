@@ -16,17 +16,13 @@ public class GetName : MonoBehaviour
 
     [SerializeField] private string mainScene = "MainScene";
 
+    // Switches scene and gets player's name
     public void PlayerName()
     {
         blackScreen.SetActive(true);
         FPSController.playerName = prefixedInput.GetUserInput();
         //SceneManager.LoadScene(mainScene);
         FadeToBlack(fadeDuration);
-    }
-
-    void Start()
-    {
-
     }
 
     public void FadeToBlack(float fadeDuration)
@@ -39,6 +35,7 @@ public class GetName : MonoBehaviour
         StartCoroutine(Fade(1, 0f)); // Fade from Black to Transparent
     }
 
+    // Contains copy of fade function
     private IEnumerator Fade(float startAlpha, float endAlpha)
     {
         float elapsedTime = 0f;

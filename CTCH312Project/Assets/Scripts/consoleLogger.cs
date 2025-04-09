@@ -21,6 +21,7 @@ public class ConsoleLogger : MonoBehaviour
         Application.logMessageReceived -= HandleLog;
     }
 
+    // Limits length of text and accumulates identical console logs
     void HandleLog(string logString, string stackTrace, LogType type)
     {
         if (maxCharsPerLine > 0 && logString.Length > maxCharsPerLine)

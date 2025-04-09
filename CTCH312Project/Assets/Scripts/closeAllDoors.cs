@@ -25,6 +25,7 @@ public class closeAllDoors : MonoBehaviour
         
     }
 
+    // Closes all the doors in the scene
     public void closeDoors()
     {
         if (door1.isOpening == true)

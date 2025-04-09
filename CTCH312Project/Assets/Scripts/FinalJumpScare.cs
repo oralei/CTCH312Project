@@ -29,14 +29,7 @@ public class FinalJumpScare : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-
-        }
-    }
-
+    // Activates jump scare volume and plays doorbell sound
     public void triggerFinalJS()
     {
         audioManager.PlaySFX(audioManager.lockedDoor);

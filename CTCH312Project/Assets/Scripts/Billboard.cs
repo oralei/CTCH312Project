@@ -19,6 +19,8 @@ public class Billboard : MonoBehaviour
     }
 
     // Use Late update so everything should have finished moving.
+    // Billboard function
+    // Used to make objects always face the camera
     void LateUpdate()
     {
         // There are two ways people billboard things.

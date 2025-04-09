@@ -12,6 +12,8 @@ public class spawner : MonoBehaviour
         StartCoroutine(LoopWithDelay());
     }
 
+    // Spawns 50 apples
+    // Not used in game
     IEnumerator LoopWithDelay()
     {
         for (int i = 0; i < spawnAmount; i++)

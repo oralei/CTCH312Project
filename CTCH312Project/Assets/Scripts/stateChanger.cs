@@ -26,6 +26,7 @@ public class stateChanger : MonoBehaviour
         
     }
 
+    // Activates broken vase on volume enter
     private void OnTriggerEnter(Collider other)
     {
         // Check if the collided object has the "Player" tag

@@ -42,6 +42,8 @@ public class SeekManager : MonoBehaviour
 
     }
 
+    // Changes game state depending on round of hide and seek
+    // calls hideBilly function
     private void OnTriggerEnter(Collider other)
     {
         blackFadeScreen.FadeToBlack(blackFadeScreen.fadeDuration);
@@ -89,6 +91,7 @@ public class SeekManager : MonoBehaviour
         }
     }
 
+    // Places Billy at hiding spot depending on struct
     public void hideBilly(HidingSpot hs)
     {
         Debug.Log("Hiding at " + hs.spotName);

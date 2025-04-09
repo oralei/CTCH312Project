@@ -16,13 +16,6 @@ public class BillyMovement : MonoBehaviour
 
     public Animator animator;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        //m_Agent = GetComponent <NavMeshAgent>();
-        //MoveToPositionThenRotate(new Vector3(0.171000004f, 0.134000003f, -8.16499996f), new Quaternion(0, 1, 0, 0));
-    }
-
     // Update is called once per frame
     void Update()
     {

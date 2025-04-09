@@ -36,6 +36,8 @@ public class FinalJSTrigger : MonoBehaviour
         }
     }
 
+    // When player enters volume, activates jump scare
+    // Slows down players movement, locks players mouse, looks at shadow guy
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))

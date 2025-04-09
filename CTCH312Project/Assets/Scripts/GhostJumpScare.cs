@@ -31,6 +31,7 @@ public class GhostJumpScare : MonoBehaviour
 
     }
 
+    // Closes bedroom door, activates ghost, and removes furniture 
     public void setupJS()
     {
         // close the door if its open
@@ -57,6 +58,7 @@ public class GhostJumpScare : MonoBehaviour
         Invoke("jumpscareReturn", 0.44f);
     }
 
+    // Returns room to normal state
     public void jumpscareReturn()
     {
         // enable normal stuff

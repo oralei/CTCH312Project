@@ -47,6 +47,7 @@ public class explodeMaxwell : MonoBehaviour
         
     }
 
+    // Makes cat explode depending on how many times player pets cat
     public void Explode() 
     {
         // Cancel any running animation first
@@ -86,6 +87,7 @@ public class explodeMaxwell : MonoBehaviour
         }
     }
 
+    // Makes sure sprite (explosion) only plays once
     public void PlayAnimationOnce()
     {
         // Make the sprite visible
@@ -109,6 +111,7 @@ public class explodeMaxwell : MonoBehaviour
         spriteRenderer.enabled = false;
     }
 
+    // Grows and shrinks cat based on curve
     private IEnumerator PetAnimation()
     {
         isAnimating = true;

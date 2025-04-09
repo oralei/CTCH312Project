@@ -38,6 +38,7 @@ public class Jumpscare : MonoBehaviour
         lastCheckTime = 0;
     }
 
+    // Constantly checks visibility of object
     void Update()
     {
         // If already disappeared, don't check anymore
@@ -61,6 +62,7 @@ public class Jumpscare : MonoBehaviour
         }
     }
 
+    // Uses camera's frustum and creates ray casts to create a percentage of object visibility 
     float CalculateVisibilityPercentage(Camera camera)
     {
         if (camera == null || objectRenderer == null)
@@ -132,6 +134,7 @@ public class Jumpscare : MonoBehaviour
         StartCoroutine(HideAfterDelay());
     }
 
+    // Deactivates object's renderer after a delay
     IEnumerator HideAfterDelay()
     {
         yield return new WaitForSeconds(appearDuration);

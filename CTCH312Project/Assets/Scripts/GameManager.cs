@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
 
     public HashSet<string> objectsFound = new HashSet<string>(); // HashSet prevents duplicates automatically
 
+    // Sets game object as instance and obtains post processing
     private void Awake()
     {
         if (Instance == null)
@@ -67,6 +68,7 @@ public class GameManager : MonoBehaviour
         Instance.PostProcessing.profile.TryGet(out colorAdjustments);
     }
 
+    // Changes game state and makes changes to the scene depending on the state
     public static void setGameState(int newState)
     {
         Instance.gameEventState = newState;
@@ -172,6 +174,7 @@ public class GameManager : MonoBehaviour
         Instance.StartCoroutine(Instance.BlinkText(2)); // Blink twice
     }
 
+    // Blinks text yellow
     IEnumerator BlinkText(int times)
     {
         Color originalColor = Color.white;
@@ -185,6 +188,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Resets Billy's pose animation
     public void resetPose()
     {
         if (Instance.BillyAnimator.GetBool("isLaying"))

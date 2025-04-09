@@ -30,6 +30,7 @@ public class walkOutDoor : MonoBehaviour
         }
     }
 
+    // Makes parents walk out the front door
     public void TriggerWalk()
     {
         momAnim.SetBool("isMoving", true);

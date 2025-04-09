@@ -22,6 +22,7 @@ public class blackFadeScreen : MonoBehaviour
         StartCoroutine(Fade(1, 0f)); // Fade from Black to Transparent
     }
 
+    // Changes the alpha of an image overtime
     private IEnumerator Fade(float startAlpha, float endAlpha)
     {
         float elapsedTime = 0f;

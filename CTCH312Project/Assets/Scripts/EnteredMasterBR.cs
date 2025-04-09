@@ -23,6 +23,7 @@ public class EnteredMasterBR : MonoBehaviour
         
     }
 
+    // Closes doors and activates running ghost jump scare
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && ready)

@@ -50,6 +50,7 @@ public class microwaveBehaviour : MonoBehaviour
         
     }
 
+    // Changes game and microwave state depending on game state and whether or not player has pizza
     public void openMicrowave()
     {
         if (mwAnimator != null)

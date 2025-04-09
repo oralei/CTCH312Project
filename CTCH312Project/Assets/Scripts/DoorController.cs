@@ -9,6 +9,7 @@ public class DoorController : MonoBehaviour
 
     public bool isOpening;
 
+    // Open and closes doors based on bool
     void Update()
     {
         float targetRotation = isOpening ? openRot : closeRot;

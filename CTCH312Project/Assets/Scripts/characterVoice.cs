@@ -53,6 +53,9 @@ public class characterVoice : MonoBehaviour
         revealedCharacterCount = 0;
     }
 
+    // Subscribes to the OnCharacterTyped event in a line viewer.
+    // Plays a sound effect on a character typed depending on the
+    // character name.
     private void OnCharacterTyped()
     {
         voiceName = characterName.text;

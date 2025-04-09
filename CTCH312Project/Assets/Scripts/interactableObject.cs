@@ -38,6 +38,7 @@ public class interactableObject : MonoBehaviour, IInteractable
         
     }
 
+    // Contains every case for interacted object including NPCs
     public void Interact()
     {
         Debug.Log($"Interacted with: {objectID}");
@@ -401,6 +402,7 @@ public class interactableObject : MonoBehaviour, IInteractable
         }
     }
 
+    // Changes game state if player has interacted with three unique objects
     private void exploreCountObject(string objectID)
     {
         if (GameManager.Instance.gameEventState >= 10)
