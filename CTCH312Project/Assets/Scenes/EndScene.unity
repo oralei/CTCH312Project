@@ -206,8 +206,8 @@ MonoBehaviour:
     & Design]\r\n\r\n<color=#FFE75F>Level & Scene Designer</color> Ariel\r\n\r\n<color=#FFE75F>Main
     Visual Artist</color> Mark\r\n\r\n<color=#FFE75F>UI Designer</color> Mark\r\n\r\n<color=#FFE75F>Model
     Designer</color> Mark\r\n\r\n\r\n\r\n[Sound & Audio]\r\n\r\n<color=#FFE75F>Billy's
-    Mom</color> Ariel\r\n\r\n<color=#FFE75F>Billy</color> Mark\r\n\r\n<color=#FFE75F>Kevin</color>
-    Mark\r\n\r\n<color=#FFE75F>The Player</color> Ariel\r\n\r\n\r\n<color=#FFE75F>Sound
+    Mom</color> Ariel\n\n<color=#FFE75F>The Player</color> Ariel\r\n\r\n<color=#FFE75F>Billy</color>
+    Mark\r\n\r\n<color=#FFE75F>Kevin</color> Mark\r\n\r\n\r\n\r\n<color=#FFE75F>Sound
     Design</color> Ariel\r\n\r\n<color=#FFE75F>Audio Engineer</color> Mark\r\n\r\n\r\n\r\n[External
     Resources]\r\n\r\n<color=#FFE75F>Music</color> Tyops\r\n\r\n<color=#FFE75F>FPS
     Controller</color> Dustin Morman\r\n\r\n<color=#FFE75F>Model Pack</color> Elbolilloduro\r\n\r\n<color=#FFE75F>Model
@@ -594,6 +594,10 @@ MonoBehaviour:
   lockedDoor: {fileID: 0}
   buttonPress: {fileID: 0}
   eatSound: {fileID: 0}
+  pickUpPhone: {fileID: 0}
+  meow: {fileID: 0}
+  explode: {fileID: 0}
+  squish: {fileID: 0}
 --- !u!4 &685067177
 Transform:
   m_ObjectHideFlags: 0
