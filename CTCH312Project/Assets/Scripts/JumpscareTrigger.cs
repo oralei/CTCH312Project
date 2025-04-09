@@ -19,6 +19,8 @@ public class Jumpscare : MonoBehaviour
     private bool hasDisappeared = false;
     private float lastCheckTime;
 
+    // modified from https://discussions.unity.com/t/how-to-tell-if-entire-object-is-visible-in-camera-bounds/907806/4
+
     void Start()
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
